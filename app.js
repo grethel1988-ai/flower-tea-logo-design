@@ -1056,8 +1056,6 @@ let designerMode = 'select'; // 'select' or 'draw'
 let canvasBgColor = '#ffffff';
 let stickers = [];
 let selectedStickerId = null;
-        selectedStickerIds = [];
-        selectedStickerIds = [];
 let selectedStickerIds = []; // Multi-select support
 let isMarqueeing = false;
 let marqueeStart = { x: 0, y: 0 };
@@ -1190,11 +1188,11 @@ function drawCanvas() {
         }
         
         if (selectedStickerIds.includes(item.id) && designerMode === 'select') {
-            ctx.strokeStyle = 'var(--primary-color)';
+            ctx.strokeStyle = '#2e6f40';
             ctx.lineWidth = 2;
             ctx.setLineDash([6, 4]);
             ctx.strokeRect(-item.size / 2 - 8, -item.size / 2 - 8, item.size + 16, item.size + 16);
-            ctx.fillStyle = 'var(--primary-color)';
+            ctx.fillStyle = '#2e6f40';
             ctx.fillRect(item.size / 2 + 4, item.size / 2 + 4, 8, 8);
         }
         
@@ -1204,7 +1202,7 @@ function drawCanvas() {
     // Draw Marquee Selection Box
     if (isMarqueeing && designerMode === 'select') {
         ctx.save();
-        ctx.strokeStyle = 'var(--primary-color)';
+        ctx.strokeStyle = '#2e6f40';
         ctx.lineWidth = 1.5;
         ctx.setLineDash([4, 4]);
         const x = marqueeStart.x;
