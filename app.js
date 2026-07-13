@@ -1081,7 +1081,12 @@ const stickerGlyphs = {
     star_sparkle: { value: '\uf0a3', type: 'sticker', color: '#000000', size: 75 },
     shield: { value: '\uf3ed', type: 'sticker', color: '#000000', size: 75 },
     smile: { value: '\uf118', type: 'sticker', color: '#000000', size: 75 },
-    peace: { value: '\uf67f', type: 'sticker', color: '#000000', size: 75 }
+    peace: { value: '\uf67f', type: 'sticker', color: '#000000', size: 75 },
+    cat: { value: '\uf2be', type: 'sticker', color: '#000000', size: 75 },
+    dog: { value: '\uf6d3', type: 'sticker', color: '#000000', size: 75 },
+    dove: { value: '\uf4ff', type: 'sticker', color: '#000000', size: 75 },
+    fish: { value: '\uf578', type: 'sticker', color: '#000000', size: 75 },
+    frog: { value: '\uf52e', type: 'sticker', color: '#000000', size: 75 }
 };
 
 function initDesigner() {
