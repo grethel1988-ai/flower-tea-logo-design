@@ -63,18 +63,15 @@ const slidesData = [
         title: "單元 1：LOGO 的本質與造形簡化學（結合大師聯想）",
         content: `
             <div class="slide-body">
-                <p><strong>LOGO（商標標誌）</strong>是品牌的視覺身分證。設計時，我們需透過<strong>造形聯想（如達利 Mae West 房間）</strong>與<strong>禪意簡化（如牧谿《六柿圖》）</strong>，將繁雜事物簡化為幾何。以下為 10 個全球著名標誌的「造形簡化與品牌故事」：</p>
+                <p><strong>LOGO（商標標誌）</strong>是品牌的視覺身分證。設計時，我們需透過<strong>造形聯想（如達利 Mae West 房間）</strong>與<strong>禪意簡化（如牧谿《六柿圖》）</strong>，將繁雜事物簡化為幾何。以下為全球著名標誌的「造形簡化與品牌故事」：</p>
                 <div class="logo-examples-grid">
                     <button class="logo-example-btn active" onclick="showLogoDetail(0)">⭐ 星巴克</button>
                     <button class="logo-example-btn" onclick="showLogoDetail(1)">🍟 麥當勞</button>
                     <button class="logo-example-btn" onclick="showLogoDetail(2)">✔️ Nike</button>
                     <button class="logo-example-btn" onclick="showLogoDetail(3)">🍎 蘋果</button>
                     <button class="logo-example-btn" onclick="showLogoDetail(4)">📦 亞馬遜</button>
-                    <button class="logo-example-btn" onclick="showLogoDetail(5)">✈️ FedEx</button>
-                    <button class="logo-example-btn" onclick="showLogoDetail(6)">👜 香奈兒</button>
-                    <button class="logo-example-btn" onclick="showLogoDetail(7)">🐎 法拉利</button>
-                    <button class="logo-example-btn" onclick="showLogoDetail(8)">🥤 百事可樂</button>
-                    <button class="logo-example-btn" onclick="showLogoDetail(9)">🧱 樂高</button>
+                    <button class="logo-example-btn" onclick="showLogoDetail(5)">👜 香奈兒</button>
+                    <button class="logo-example-btn" onclick="showLogoDetail(6)">🧱 樂高</button>
                 </div>
                 <div class="logo-detail-card" id="logo-detail-content"></div>
             </div>
@@ -662,24 +659,9 @@ const logoDetails = [
         logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
     },
     {
-        title: "✈️ 聯邦快遞 (FedEx) — 正負空間的極致運用",
-        text: "FedEx 的 LOGO 是設計界『負空間（Negative Space）』的教科書範例。如果您仔細觀察字母『E』與『x』之間的白色空隙，會發現隱藏著一個向右的『白色箭頭』。這完全不用增加任何多餘圖形，就巧妙傳達了快遞品牌的速度、精準度與前進感。",
-        logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b9/FedEx_Express.svg"
-    },
-    {
         title: "👜 香奈兒 (Chanel) — 對稱與雙 C 的秩序美",
         text: "香奈兒 LOGO 由創辦人 Coco Chanel 姓名首字母兩個『C』互鎖而成。設計採用了完全左右對稱的幾何結構。黑白對比的簡約配色體現了永恆、經典、優雅與現代奢華的秩序美感。",
         logoUrl: "https://upload.wikimedia.org/wikipedia/en/9/92/Chanel_logo_interlocking_cs.svg"
-    },
-    {
-        title: "🐎 法拉利 (Ferrari) — 英雄徽章與家鄉色彩",
-        text: "著名的『躍馬』標誌，最早是一戰時期義大利傳奇飛行員機身上的個人徽章。法拉利創辦人將其簡化為黑色的躍馬剪影，並配上代表創辦人家鄉摩德納市（Modena）的鮮黃色背景。頂部搭配義大利國旗三色，象徵速度、激情與國家驕傲。",
-        logoUrl: "https://aleen42.github.io/badges/src/ferrari.svg"
-    },
-    {
-        title: "🥤 百事可樂 (Pepsi) — 動態弧線的時代簡化",
-        text: "百事可樂的圓形紅白藍徽章，最初源自二戰時期的美國國旗三色。歷經多次簡化，複雜的緞帶文字被剝離，最終演變為一條流暢的白色『微笑波浪』，將圓形切割為紅藍兩半。動態的波浪弧線展現了年輕、活力與酷炫的品牌個性。",
-        logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Pepsi_2023.svg"
     },
     {
         title: "🧱 樂高 (Lego) — 玩具字體與童心色彩",
