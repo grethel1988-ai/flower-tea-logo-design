@@ -1200,7 +1200,7 @@ function addTextSticker() {
     if (!textVal) return;
     
     const font = document.getElementById('designer-font-select').value;
-    const color = '#ffb703'; // Yellow by default
+    const color = '#000000'; // Pure black by default
     
     stickerIdCounter++;
     const newText = {
