@@ -27,3 +27,8 @@
 
 ## 本地運行
 直接在瀏覽器中開啟 `index.html` 即可運行本平台，或使用 Live Server 等本地開發伺服器啟動。
+
+## 線上展示
+本平台已部署至 GitHub Pages，可透過以下連結線上體驗：
+👉 [花茶 LOGO 設計與色彩美學互動學習平台](https://grethel1988-ai.github.io/flower-tea-logo-design/)
+
