@@ -45,6 +45,9 @@
                 <a href="#match" class="menu-item" id="btn-nav-match">
                     <i class="fa-solid fa-puzzle-piece"></i> LOGO挑戰賽
                 </a>
+                <a href="#designer" class="menu-item" id="btn-nav-designer">
+                    <i class="fa-solid fa-pen-ruler"></i> 設計工作坊
+                </a>
             </nav>
 
             <div class="sidebar-footer">
@@ -76,9 +79,52 @@
                             開始探索簡報 <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
-                    <div class="hero-image-placeholder">
-                        <i class="fa-solid fa-leaf leaf-animation"></i>
-                        <i class="fa-solid fa-mug-hot tea-animation"></i>
+                    <div class="hero-image-showcase">
+                        <svg class="flower-tea-bottle-svg" viewBox="0 0 200 350" width="200" height="350">
+                            <defs>
+                                <linearGradient id="teaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#ffb3c1" />
+                                    <stop offset="50%" stop-color="#ff4d6d" />
+                                    <stop offset="100%" stop-color="#c9184a" />
+                                </linearGradient>
+                                <linearGradient id="glassReflection" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="rgba(255,255,255,0.4)" />
+                                    <stop offset="20%" stop-color="rgba(255,255,255,0.1)" />
+                                    <stop offset="80%" stop-color="rgba(255,255,255,0.1)" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0.3)" />
+                                </linearGradient>
+                                <filter id="bottleGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                            </defs>
+                            <ellipse cx="100" cy="180" rx="60" ry="110" fill="rgba(255, 77, 109, 0.15)" filter="url(#bottleGlow)" />
+                            
+                            <path d="M 55,90 C 55,90 60,95 100,95 C 140,95 145,90 145,90 L 145,260 C 145,285 55,285 55,260 Z" fill="url(#teaGradient)" class="liquid-flow" />
+                            
+                            <g class="tea-contents">
+                                <path d="M 80,180 C 70,170 70,150 85,140 C 90,155 85,175 80,180" fill="#2d6a4f" opacity="0.8" transform="rotate(15, 80, 160)" />
+                                <path d="M 120,220 C 130,210 130,190 115,180 C 110,195 115,215 120,220" fill="#40916c" opacity="0.7" transform="rotate(-25, 120, 200)" />
+                                <circle cx="95" cy="130" r="8" fill="#fff" opacity="0.9" />
+                                <circle cx="95" cy="130" r="3" fill="#ffb703" />
+                                <circle cx="105" cy="200" r="6" fill="#fff" opacity="0.8" />
+                                <circle cx="105" cy="200" r="2" fill="#ffb703" />
+                            </g>
+
+                            <path d="M 80,30 L 120,30 L 120,50 C 120,50 145,60 145,90 L 145,270 C 145,295 55,295 55,270 L 55,90 C 55,60 80,50 80,50 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="3" />
+                            <path d="M 75,15 L 125,15 C 128,15 128,30 125,30 L 75,30 C 72,30 72,15 75,15 Z" fill="#8c6239" />
+                            <rect x="85" y="10" width="30" height="5" rx="2" fill="#5c3f21" />
+
+                            <rect x="70" y="140" width="60" height="40" rx="3" fill="rgba(255,255,255,0.85)" />
+                            <text x="100" y="160" font-family="'Outfit', sans-serif" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">FLOWER TEA</text>
+                            <text x="100" y="172" font-family="'Noto Sans TC', sans-serif" font-size="6" fill="#666" text-anchor="middle">手作美學</text>
+
+                            <path d="M 62,95 L 62,260 C 62,275 60,270 60,260 L 60,95 C 60,85 62,90 62,95 Z" fill="rgba(255,255,255,0.3)" />
+                            <path d="M 85,55 C 85,55 65,65 65,90" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
+                        </svg>
+                        <div class="floating-particle leaf-particle-1"><i class="fa-solid fa-leaf"></i></div>
+                        <div class="floating-particle leaf-particle-2"><i class="fa-solid fa-leaf"></i></div>
+                        <div class="floating-particle petal-particle-1"><i class="fa-solid fa-asterisk"></i></div>
                     </div>
                 </div>
 
@@ -158,6 +204,16 @@
                             <div class="card-info">
                                 <h5>LOGO挑戰賽</h5>
                                 <p>配對 20 個經典 LOGO 與品牌，考驗幾何觀察力</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-interactive" onclick="switchSection('designer')">
+                            <div class="card-icon-wrapper" style="color: #4ea8de; background-color: #e3f2fd; width: 60px; height: 60px; border-radius: var(--border-radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0;">
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </div>
+                            <div class="card-info">
+                                <h5>設計工作坊</h5>
+                                <p>用花草貼圖與文字，線上自助設計個人花茶 LOGO</p>
                             </div>
                         </div>
                     </div>
@@ -317,8 +373,17 @@
                             <div class="mix-display-container">
                                 <div class="color-box-wrapper">
                                     <div class="color-title">目標顏色</div>
-                                    <div class="color-box" id="box-target" style="background-color: rgb(200, 10, 50);"></div>
-                                    <div class="color-code" id="code-target">RGB(200, 10, 50)</div>
+                                    <div class="bottle-svg-wrapper">
+                                        <svg class="game-bottle-svg" viewBox="0 0 120 220" width="120" height="220">
+                                            <path id="bottle-target-liquid" d="M 33,55 C 33,55 35,58 60,58 C 85,58 87,55 87,55 L 87,175 C 87,190 33,190 33,175 Z" fill="rgb(180, 15, 45)" />
+                                            <path d="M 50,15 L 70,15 L 70,30 C 70,30 87,35 87,55 L 87,180 C 87,195 33,195 33,180 L 33,55 C 33,35 50,30 50,30 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" />
+                                            <path d="M 47,5 L 73,5 C 75,5 75,15 73,15 L 47,15 C 45,15 45,5 47,5 Z" fill="#8c6239" />
+                                            <rect x="42" y="85" width="36" height="25" rx="2" fill="rgba(255,255,255,0.85)" />
+                                            <text x="60" y="97" font-family="'Outfit', sans-serif" font-size="6" font-weight="bold" fill="#333" text-anchor="middle">TARGET</text>
+                                            <text x="60" y="105" font-family="'Noto Sans TC', sans-serif" font-size="4" fill="#666" text-anchor="middle">目標茶湯</text>
+                                        </svg>
+                                    </div>
+                                    <div class="color-code" id="code-target">RGB(180, 15, 45)</div>
                                 </div>
                                 
                                 <div class="mix-arrow">
@@ -327,7 +392,17 @@
 
                                 <div class="color-box-wrapper">
                                     <div class="color-title">你調的顏色</div>
-                                    <div class="color-box" id="box-mixed" style="background-color: rgb(255, 255, 255);"></div>
+                                    <div class="bottle-svg-wrapper">
+                                        <svg class="game-bottle-svg" viewBox="0 0 120 220" width="120" height="220">
+                                            <path id="bottle-mixed-liquid" d="M 33,55 C 33,55 35,58 60,58 C 85,58 87,55 87,55 L 87,175 C 87,190 33,190 33,175 Z" fill="rgb(255, 255, 255)" />
+                                            <path d="M 50,15 L 70,15 L 70,30 C 70,30 87,35 87,55 L 87,180 C 87,195 33,195 33,180 L 33,55 C 33,35 50,30 50,30 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" />
+                                            <path d="M 47,5 L 73,5 C 75,5 75,15 73,15 L 47,15 C 45,15 45,5 47,5 Z" fill="#8c6239" />
+                                            <rect x="42" y="85" width="36" height="25" rx="2" fill="rgba(255,255,255,0.85)" />
+                                            <text x="60" y="97" font-family="'Outfit', sans-serif" font-size="6" font-weight="bold" fill="#333" text-anchor="middle">MY TEA</text>
+                                            <text x="60" y="105" font-family="'Noto Sans TC', sans-serif" font-size="4" fill="#666" text-anchor="middle">我的調配</text>
+                                            <g id="bottle-mixed-bubbles"></g>
+                                        </svg>
+                                    </div>
                                     <div class="color-code" id="code-mixed">RGB(255, 255, 255)</div>
                                 </div>
                             </div>
@@ -378,7 +453,145 @@
                     </div>
                 </div>
             </section>
+
+            <!-- SECTION: Logo Designer Workshop -->
+            <section id="sec-designer" class="content-section">
+                <div class="designer-layout">
+                    <!-- Left Control Panel -->
+                    <div class="card designer-control-card">
+                        <div class="card-header">
+                            <h4><i class="fa-solid fa-palette text-primary"></i> LOGO 設計工具箱</h4>
+                            <p>挑選背景色、加入花草貼圖與文字，打造專屬的花茶 LOGO！</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Background color selectors -->
+                            <div class="control-group">
+                                <label class="control-label">1. 選擇背景茶湯色</label>
+                                <div class="bg-preset-grid">
+                                    <button class="bg-preset-btn active" style="background-color: #f7f1e3;" data-color="#f7f1e3"></button>
+                                    <button class="bg-preset-btn" style="background-color: #ffb3c1;" data-color="#ffb3c1"></button>
+                                    <button class="bg-preset-btn" style="background-color: #ffd166;" data-color="#ffd166"></button>
+                                    <button class="bg-preset-btn" style="background-color: #a8dadc;" data-color="#a8dadc"></button>
+                                    <button class="bg-preset-btn" style="background-color: #e2f0d9;" data-color="#e2f0d9"></button>
+                                    <button class="bg-preset-btn" style="background-color: #ffffff;" data-color="#ffffff"></button>
+                                </div>
+                            </div>
+
+                            <!-- Stickers Selector -->
+                            <div class="control-group">
+                                <label class="control-label">2. 加入設計貼圖 (點擊加入畫布)</label>
+                                <div class="sticker-select-grid">
+                                    <button class="sticker-btn" data-sticker="leaf1"><i class="fa-solid fa-leaf" style="color: #2d6a4f;"></i> 綠葉 A</button>
+                                    <button class="sticker-btn" data-sticker="leaf2"><i class="fa-solid fa-seedling" style="color: #40916c;"></i> 嫩芽 B</button>
+                                    <button class="sticker-btn" data-sticker="flower1"><i class="fa-solid fa-sun" style="color: #ffb703;"></i> 洋甘菊</button>
+                                    <button class="sticker-btn" data-sticker="flower2"><i class="fa-solid fa-asterisk" style="color: #ff4d6d;"></i> 桃花瓣</button>
+                                    <button class="sticker-btn" data-sticker="rose"><i class="fa-solid fa-face-smile" style="color: #c9184a;">🌹</i> 玫瑰花</button>
+                                    <button class="sticker-btn" data-sticker="cup"><i class="fa-solid fa-mug-hot" style="color: #8c6239;"></i> 熱茶杯</button>
+                                    <button class="sticker-btn" data-sticker="tea"><i class="fa-solid fa-glass-water" style="color: #a8dadc;"></i> 玻璃杯</button>
+                                    <button class="sticker-btn" data-sticker="lemon"><i class="fa-solid fa-lemon" style="color: #ffd166;"></i> 檸檬片</button>
+                                </div>
+                            </div>
+
+                            <!-- Text Input and options -->
+                            <div class="control-group">
+                                <label class="control-label">3. 加入品牌文字</label>
+                                <div class="text-input-row" style="display: flex; gap: 0.5rem;">
+                                    <input type="text" id="designer-text-input" placeholder="輸入茶品牌名稱..." class="input-text" style="flex: 1; padding: 0.5rem; border-radius: var(--border-radius-sm); border: 1px solid var(--border-color); background: rgba(255,255,255,0.05); color: var(--text-color);">
+                                    <button class="btn btn-primary" onclick="addTextSticker()" style="padding: 0.5rem 1rem;"><i class="fa-solid fa-plus"></i> 新增</button>
+                                </div>
+                                <div class="text-style-row" style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+                                    <select id="designer-font-select" class="input-select" style="flex: 1; padding: 0.5rem; border-radius: var(--border-radius-sm); border: 1px solid var(--border-color); background: #1e1e2e; color: var(--text-color);">
+                                        <option value="Noto Sans TC">黑體 (Noto Sans)</option>
+                                        <option value="Outfit">英字 (Outfit)</option>
+                                        <option value="serif">古典明體 (Serif)</option>
+                                    </select>
+                                    <input type="color" id="designer-text-color" value="#333333" class="input-color" style="width: 45px; height: 38px; border: none; padding: 0; cursor: pointer; border-radius: var(--border-radius-sm);">
+                                </div>
+                            </div>
+
+                            <!-- Tool modes: Hand Draw vs Select -->
+                            <div class="control-group">
+                                <label class="control-label">4. 編輯/手繪模式</label>
+                                <div class="mode-toggle-row" style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-outline active" id="btn-mode-select" onclick="setDesignerMode('select')" style="flex: 1;">
+                                        <i class="fa-solid fa-arrow-pointer"></i> 編輯貼圖
+                                    </button>
+                                    <button class="btn btn-outline" id="btn-mode-draw" onclick="setDesignerMode('draw')" style="flex: 1;">
+                                        <i class="fa-solid fa-paintbrush"></i> 自由手繪
+                                    </button>
+                                </div>
+                                <div class="draw-options-row hidden" id="designer-draw-controls" style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="color" id="designer-brush-color" value="#ff4d6d" class="input-color" style="width: 40px; height: 35px; border: none; padding: 0; cursor: pointer; border-radius: var(--border-radius-sm);">
+                                    <input type="range" id="designer-brush-size" min="1" max="20" value="5" style="flex: 1; accent-color: var(--primary-color);">
+                                    <span id="brush-size-val" style="font-size: 0.85rem; color: var(--text-muted); width: 30px;">5px</span>
+                                </div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="designer-actions" style="margin-top: 1.5rem; display: flex; gap: 0.5rem;">
+                                <button class="btn btn-outline" onclick="clearDesignerCanvas()" style="flex: 1; border-color: rgba(239, 71, 111, 0.4); color: #ef476f;"><i class="fa-solid fa-trash"></i> 清空</button>
+                                <button class="btn btn-accent" onclick="downloadLogo()" style="flex: 2;"><i class="fa-solid fa-download"></i> 下載 LOGO (PNG)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Canvas View -->
+                    <div class="designer-canvas-column">
+                        <div class="card canvas-card" style="display: flex; flex-direction: column; align-items: center; padding: 1.5rem;">
+                            <div class="canvas-header" style="text-align: center; margin-bottom: 1rem; width: 100%;">
+                                <div class="canvas-title" style="font-size: 1.25rem; font-weight: bold; color: var(--text-color);">LOGO 實體畫布</div>
+                                <div class="canvas-subtitle" id="canvas-status" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">點擊貼圖加入，並可在畫面上拖曳移動</div>
+                            </div>
+                            <div class="canvas-container-wrapper" style="position: relative; border-radius: var(--border-radius-md); overflow: visible; box-shadow: var(--shadow-lg); border: 2px solid rgba(255,255,255,0.08); background: #f7f1e3;">
+                                <canvas id="logoCanvas" width="400" height="400" style="display: block; cursor: default; width: 100%; max-width: 400px; aspect-ratio: 1;"></canvas>
+                                
+                                <!-- Sticker Helper Toolbar for selected sticker -->
+                                <div class="canvas-toolbar hidden" id="canvas-sticker-toolbar" style="position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); display: flex; gap: 0.25rem; background: rgba(30, 30, 46, 0.95); padding: 0.35rem 0.65rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow-lg); z-index: 100;">
+                                    <button class="toolbar-btn" onclick="rotateSelectedSticker(-15)" title="逆時針旋轉" style="background: none; border: none; color: #fff; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; font-size: 0.85rem;"><i class="fa-solid fa-rotate-left"></i></button>
+                                    <button class="toolbar-btn" onclick="rotateSelectedSticker(15)" title="順時針旋轉" style="background: none; border: none; color: #fff; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; font-size: 0.85rem;"><i class="fa-solid fa-rotate-right"></i></button>
+                                    <button class="toolbar-btn" onclick="scaleSelectedSticker(1.1)" title="放大" style="background: none; border: none; color: #fff; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; font-size: 0.85rem;"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                                    <button class="toolbar-btn" onclick="scaleSelectedSticker(0.9)" title="縮小" style="background: none; border: none; color: #fff; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; font-size: 0.85rem;"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                                    <button class="toolbar-btn text-danger" onclick="deleteSelectedSticker()" title="刪除選中項目" style="background: none; border: none; color: #ef476f; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; font-size: 0.85rem;"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+    </div>
+
+    <!-- Game Achievement Modal -->
+    <div id="achievement-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa-solid fa-trophy trophy-icon"></i>
+                <h3 id="badge-modal-title">榮譽成就解鎖！</h3>
+            </div>
+            <div class="modal-body">
+                <div class="badge-container">
+                    <div class="shiny-badge" id="achievement-badge">
+                        <!-- Badge dynamically rendered -->
+                    </div>
+                </div>
+                <h4 id="achievement-title">頂級色彩魔法師</h4>
+                <p id="achievement-desc">恭喜你以平均 95% 的超高相似度完成了所有花茶調色關卡！</p>
+                
+                <div class="achievement-stats">
+                    <div class="stat-item">
+                        <span class="stat-val" id="stat-time">02:35</span>
+                        <span class="stat-lbl">挑戰時間</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-val" id="stat-accuracy">96%</span>
+                        <span class="stat-lbl">平均相似度</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeAchievementModal()">重回大廳</button>
+            </div>
+        </div>
     </div>
 
     <!-- Script imports -->

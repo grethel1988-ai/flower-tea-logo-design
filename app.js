@@ -8,7 +8,8 @@ const sections = {
     slides: { id: 'sec-slides', title: '簡報知識庫', desc: '瀏覽 LOGO 色彩設計與壓克力調色理論' },
     quiz: { id: 'sec-quiz', title: '概念挑戰賽', desc: '答題檢驗學習成果，爭取滿分榮耀' },
     game: { id: 'sec-game', title: '調色大挑戰', desc: '調配出最完美的花茶經典色彩！' },
-    match: { id: 'sec-match', title: 'LOGO配對大挑戰', desc: '配對 20 個經典 LOGO 與品牌，考驗幾何與簡化觀察力！' }
+    match: { id: 'sec-match', title: 'LOGO配對大挑戰', desc: '配對 20 個經典 LOGO 與品牌，考驗幾何與簡化觀察力！' },
+    designer: { id: 'sec-designer', title: '設計工作坊', desc: '利用花草貼圖與手繪，設計個人專屬花茶 LOGO' }
 };
 
 function switchSection(targetKey) {
@@ -41,6 +42,8 @@ function switchSection(targetKey) {
         initGameLevel();
     } else if (targetKey === 'match') {
         initMatchGame();
+    } else if (targetKey === 'designer') {
+        initDesigner();
     }
 }
 
@@ -50,6 +53,7 @@ document.getElementById('btn-nav-slides').addEventListener('click', (e) => { e.p
 document.getElementById('btn-nav-quiz').addEventListener('click', (e) => { e.preventDefault(); switchSection('quiz'); });
 document.getElementById('btn-nav-game').addEventListener('click', (e) => { e.preventDefault(); switchSection('game'); });
 document.getElementById('btn-nav-match').addEventListener('click', (e) => { e.preventDefault(); switchSection('match'); });
+document.getElementById('btn-nav-designer').addEventListener('click', (e) => { e.preventDefault(); switchSection('designer'); });
 
 // ==========================================
 // 2. Slide Deck Component
@@ -476,6 +480,8 @@ const gameLevels = [
 
 let currentGameLevelIndex = 0;
 let userMixedColor = { r: 255, g: 255, b: 255 };
+let colorGameStartTime = null;
+let colorGameScores = [];
 
 function initGameLevel() {
     const level = gameLevels[currentGameLevelIndex];
@@ -483,9 +489,16 @@ function initGameLevel() {
     document.getElementById('game-level-name').textContent = level.name;
     document.getElementById('game-level-hint').textContent = level.hint;
     
-    // Set target color visual box
-    const targetBox = document.getElementById('box-target');
-    targetBox.style.backgroundColor = `rgb(${level.targetColor.r}, ${level.targetColor.g}, ${level.targetColor.b})`;
+    if (currentGameLevelIndex === 0) {
+        colorGameStartTime = Date.now();
+        colorGameScores = [];
+    }
+    
+    // Set target color visual bottle liquid fill
+    const targetLiquid = document.getElementById('bottle-target-liquid');
+    if (targetLiquid) {
+        targetLiquid.setAttribute('fill', `rgb(${level.targetColor.r}, ${level.targetColor.g}, ${level.targetColor.b})`);
+    }
     document.getElementById('code-target').textContent = `RGB(${level.targetColor.r}, ${level.targetColor.g}, ${level.targetColor.b})`;
     
     // Reset sliders
@@ -509,19 +522,15 @@ function updateMix() {
     document.getElementById('val-w').textContent = `${w}%`;
     
     // Calculate subtractive mixed color
-    // Cyan absorbs Red, Magenta absorbs Green, Yellow absorbs Blue
     const c_factor = c / 100;
     const m_factor = m / 100;
     const y_factor = y / 100;
     const w_factor = w / 100;
     
-    // Subtractive reflection calculation:
-    // Basic absorption model modified to support beautiful pastels when White is added
     let r = Math.pow(1.0 - c_factor, 1.2) * (0.08 + 0.92 * w_factor);
     let g = Math.pow(1.0 - m_factor, 1.2) * (0.08 + 0.92 * w_factor);
     let b = Math.pow(1.0 - y_factor, 1.2) * (0.08 + 0.92 * w_factor);
     
-    // Clamp to 0-1
     r = Math.min(Math.max(r, 0), 1);
     g = Math.min(Math.max(g, 0), 1);
     b = Math.min(Math.max(b, 0), 1);
@@ -530,31 +539,47 @@ function updateMix() {
     userMixedColor.g = Math.round(g * 255);
     userMixedColor.b = Math.round(b * 255);
     
-    // Update mixed color visual box
-    const mixedBox = document.getElementById('box-mixed');
-    mixedBox.style.backgroundColor = `rgb(${userMixedColor.r}, ${userMixedColor.g}, ${userMixedColor.b})`;
+    // Update mixed color bottle SVG liquid
+    const mixedLiquid = document.getElementById('bottle-mixed-liquid');
+    if (mixedLiquid) {
+        mixedLiquid.setAttribute('fill', `rgb(${userMixedColor.r}, ${userMixedColor.g}, ${userMixedColor.b})`);
+    }
     document.getElementById('code-mixed').textContent = `RGB(${userMixedColor.r}, ${userMixedColor.g}, ${userMixedColor.b})`;
+
+    // Update SVG bubbles in the mixed bottle based on pigments
+    const bubbleContainer = document.getElementById('bottle-mixed-bubbles');
+    if (bubbleContainer) {
+        bubbleContainer.innerHTML = '';
+        const bubbleCount = Math.min(10, Math.floor((c + m + y) / 12));
+        for (let i = 0; i < bubbleCount; i++) {
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('class', 'mixed-bubble');
+            circle.setAttribute('cx', (40 + Math.random() * 40).toString());
+            circle.setAttribute('cy', (80 + Math.random() * 80).toString());
+            circle.setAttribute('r', (1.5 + Math.random() * 2.5).toString());
+            circle.style.animationDelay = `${Math.random() * 1.5}s`;
+            circle.style.animationDuration = `${1 + Math.random() * 1.5}s`;
+            bubbleContainer.appendChild(circle);
+        }
+    }
 }
 
 function resetGameMix() {
     document.getElementById('slider-c').value = 0;
     document.getElementById('slider-m').value = 0;
     document.getElementById('slider-y').value = 0;
-    document.getElementById('slider-w').value = 80; // default to some white
+    document.getElementById('slider-w').value = 80;
     updateMix();
 }
 
 function submitMix() {
     const level = gameLevels[currentGameLevelIndex];
     
-    // Calculate Euclidean distance in RGB space
     const rDiff = userMixedColor.r - level.targetColor.r;
     const gDiff = userMixedColor.g - level.targetColor.g;
     const bDiff = userMixedColor.b - level.targetColor.b;
     const distance = Math.sqrt(rDiff * rDiff + gDiff * gDiff + bDiff * bDiff);
     
-    // Match score mapping (max distance is ~441.67)
-    // We map distance of 0 to 100%, and distance of 100+ to 0% linearly or with padding
     let matchScore = Math.max(0, 100 - (distance / 2.5));
     matchScore = Math.round(matchScore);
     
@@ -568,6 +593,7 @@ function submitMix() {
     resultBox.classList.remove('hidden');
     
     if (matchScore >= 90) {
+        colorGameScores[currentGameLevelIndex] = matchScore;
         feedbackTitle.textContent = "🎉 太棒了！完美調配！";
         feedbackTitle.style.color = "var(--primary-color)";
         feedbackText.textContent = `色彩相似度高達 ${matchScore}%！你已經成功掌握了此花茶的調色比例。`;
@@ -587,9 +613,12 @@ function submitMix() {
 
 function nextLevel() {
     if (currentGameLevelIndex === gameLevels.length - 1) {
-        alert("恭喜你！完成了所有花茶調色大挑戰關卡！你現在已經是專業的色彩魔術師囉！");
+        const totalScore = colorGameScores.reduce((sum, s) => sum + s, 0);
+        const averageScore = totalScore / gameLevels.length;
+        const elapsedSec = Math.round((Date.now() - colorGameStartTime) / 1000);
+        
         currentGameLevelIndex = 0;
-        switchSection('dashboard');
+        showAchievementModal(averageScore, elapsedSec);
     } else {
         currentGameLevelIndex++;
         initGameLevel();
@@ -974,3 +1003,402 @@ function submitMatchRound() {
 window.resetMatchRound = resetMatchRound;
 window.submitMatchRound = submitMatchRound;
 window.initMatchGame = initMatchGame;
+
+// ==========================================
+// 8. Gamification Modals & Confetti Logic
+// ==========================================
+function showAchievementModal(averageScore, elapsedSec) {
+    const modal = document.getElementById('achievement-modal');
+    modal.classList.remove('hidden');
+    
+    const minutes = Math.floor(elapsedSec / 60).toString().padStart(2, '0');
+    const seconds = (elapsedSec % 60).toString().padStart(2, '0');
+    document.getElementById('stat-time').textContent = `${minutes}:${seconds}`;
+    
+    const avgScoreRound = Math.round(averageScore);
+    document.getElementById('stat-accuracy').textContent = `${avgScoreRound}%`;
+    
+    const badgeEl = document.getElementById('achievement-badge');
+    const titleEl = document.getElementById('achievement-title');
+    const descEl = document.getElementById('achievement-desc');
+    
+    badgeEl.className = 'shiny-badge';
+    
+    if (avgScoreRound >= 96) {
+        badgeEl.classList.add('gold');
+        badgeEl.innerHTML = '<i class="fa-solid fa-trophy" style="font-size: 2.2rem; margin-bottom: 5px;"></i>金牌大師';
+        titleEl.textContent = '頂級品牌色彩大師';
+        descEl.textContent = '恭喜你！調色精準度近乎完美，色彩直覺超凡，獲得最高榮譽金牌勳章！';
+    } else if (avgScoreRound >= 92) {
+        badgeEl.classList.add('silver');
+        badgeEl.innerHTML = '<i class="fa-solid fa-medal" style="font-size: 2.2rem; margin-bottom: 5px;"></i>銀牌魔法師';
+        titleEl.textContent = '色彩創意魔法師';
+        descEl.textContent = '非常優秀！你的混色精準度極高，對壓克力四原色的掌控非常熟練！';
+    } else {
+        badgeEl.classList.add('bronze');
+        badgeEl.innerHTML = '<i class="fa-solid fa-award" style="font-size: 2.2rem; margin-bottom: 5px;"></i>銅牌見習生';
+        titleEl.textContent = '品牌色彩見習生';
+        descEl.textContent = '不錯的表現！你已成功調配出所有花茶的經典配方，繼續努力就能成為大師！';
+    }
+    
+    triggerConfetti();
+}
+
+function closeAchievementModal() {
+    document.getElementById('achievement-modal').classList.add('hidden');
+    switchSection('dashboard');
+}
+window.closeAchievementModal = closeAchievementModal;
+
+function triggerConfetti() {
+    const modal = document.getElementById('achievement-modal');
+    modal.querySelectorAll('.confetti-piece').forEach(el => el.remove());
+    
+    for (let i = 0; i < 60; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.backgroundColor = `hsl(${Math.random() * 360}, 85%, 60%)`;
+        piece.style.animationDelay = `${Math.random() * 2}s`;
+        piece.style.width = `${Math.random() * 8 + 6}px`;
+        piece.style.height = `${Math.random() * 15 + 8}px`;
+        piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+        modal.appendChild(piece);
+    }
+}
+
+// ==========================================
+// 9. Interactive Logo Designer Workshop Logic
+// ==========================================
+let canvas, ctx, drawingCanvas, drawingCtx;
+let designerMode = 'select'; // 'select' or 'draw'
+let canvasBgColor = '#f7f1e3';
+let stickers = [];
+let selectedStickerId = null;
+let isDrawing = false;
+let isDraggingSticker = false;
+let dragOffset = { x: 0, y: 0 };
+let stickerIdCounter = 0;
+
+const stickerGlyphs = {
+    leaf1: { value: '\uf06c', type: 'sticker', color: '#2d6a4f', size: 60 },
+    leaf2: { value: '\uf4d8', type: 'sticker', color: '#40916c', size: 60 },
+    flower1: { value: '\uf185', type: 'sticker', color: '#ffb703', size: 60 },
+    flower2: { value: '\uf069', type: 'sticker', color: '#ff4d6d', size: 45 },
+    rose: { value: '🌹', type: 'emoji', size: 70 },
+    cup: { value: '\uf2c4', type: 'sticker', color: '#8c6239', size: 80 },
+    tea: { value: '\e4f4', type: 'sticker', color: '#a8dadc', size: 80 },
+    lemon: { value: '\uf567', type: 'sticker', color: '#ffd166', size: 60 }
+};
+
+function initDesigner() {
+    canvas = document.getElementById('logoCanvas');
+    ctx = canvas.getContext('2d');
+    
+    if (!drawingCanvas) {
+        drawingCanvas = document.createElement('canvas');
+        drawingCanvas.width = canvas.width;
+        drawingCanvas.height = canvas.height;
+        drawingCtx = drawingCanvas.getContext('2d');
+    }
+    
+    canvas.removeEventListener('mousedown', handleCanvasStart);
+    canvas.removeEventListener('mousemove', handleCanvasMove);
+    canvas.removeEventListener('mouseup', handleCanvasEnd);
+    canvas.removeEventListener('mouseleave', handleCanvasEnd);
+    canvas.removeEventListener('touchstart', handleCanvasStart);
+    canvas.removeEventListener('touchmove', handleCanvasMove);
+    canvas.removeEventListener('touchend', handleCanvasEnd);
+    
+    canvas.addEventListener('mousedown', handleCanvasStart);
+    canvas.addEventListener('mousemove', handleCanvasMove);
+    canvas.addEventListener('mouseup', handleCanvasEnd);
+    canvas.addEventListener('mouseleave', handleCanvasEnd);
+    
+    canvas.addEventListener('touchstart', handleCanvasStart, { passive: false });
+    canvas.addEventListener('touchmove', handleCanvasMove, { passive: false });
+    canvas.addEventListener('touchend', handleCanvasEnd, { passive: false });
+    
+    // Preset Background Handlers
+    document.querySelectorAll('.bg-preset-btn').forEach(btn => {
+        btn.onclick = () => {
+            document.querySelectorAll('.bg-preset-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            canvasBgColor = btn.getAttribute('data-color');
+            const wrapper = document.querySelector('.canvas-container-wrapper');
+            if (wrapper) wrapper.style.backgroundColor = canvasBgColor;
+            drawCanvas();
+        };
+    });
+    
+    // Preset Stickers Selection Handlers
+    document.querySelectorAll('.sticker-btn').forEach(btn => {
+        btn.onclick = () => {
+            const stickerKey = btn.getAttribute('data-sticker');
+            addPresetSticker(stickerKey);
+        };
+    });
+    
+    setDesignerMode('select');
+    updateStickerToolbar();
+    drawCanvas();
+}
+
+function drawCanvas() {
+    ctx.fillStyle = canvasBgColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    if (drawingCanvas) {
+        ctx.drawImage(drawingCanvas, 0, 0);
+    }
+    
+    stickers.forEach(item => {
+        ctx.save();
+        ctx.translate(item.x, item.y);
+        ctx.rotate(item.rotation * Math.PI / 180);
+        
+        ctx.fillStyle = item.color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        if (item.type === 'sticker') {
+            ctx.font = `900 ${item.size}px "Font Awesome 6 Free"`;
+            ctx.fillText(item.value, 0, 0);
+        } else if (item.type === 'emoji') {
+            ctx.font = `${item.size}px "Outfit", sans-serif`;
+            ctx.fillText(item.value, 0, 0);
+        } else if (item.type === 'text') {
+            ctx.font = `bold ${item.size}px "${item.fontFamily}", sans-serif`;
+            ctx.fillText(item.value, 0, 0);
+        }
+        
+        if (selectedStickerId === item.id && designerMode === 'select') {
+            ctx.strokeStyle = 'var(--primary-color)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.strokeRect(-item.size / 2 - 8, -item.size / 2 - 8, item.size + 16, item.size + 16);
+            ctx.fillStyle = 'var(--primary-color)';
+            ctx.fillRect(item.size / 2 + 4, item.size / 2 + 4, 8, 8);
+        }
+        
+        ctx.restore();
+    });
+}
+
+function addPresetSticker(key) {
+    const preset = stickerGlyphs[key];
+    if (!preset) return;
+    
+    stickerIdCounter++;
+    const newSticker = {
+        id: stickerIdCounter,
+        type: preset.type,
+        value: preset.value,
+        color: preset.color || '#333333',
+        size: preset.size,
+        x: canvas.width / 2 + (Math.random() * 40 - 20),
+        y: canvas.height / 2 + (Math.random() * 40 - 20),
+        rotation: 0,
+        fontFamily: preset.type === 'sticker' ? 'Font Awesome 6 Free' : 'sans-serif'
+    };
+    stickers.push(newSticker);
+    selectedStickerId = newSticker.id;
+    updateStickerToolbar();
+    drawCanvas();
+}
+
+function addTextSticker() {
+    const textVal = document.getElementById('designer-text-input').value.trim();
+    if (!textVal) return;
+    
+    const font = document.getElementById('designer-font-select').value;
+    const color = document.getElementById('designer-text-color').value;
+    
+    stickerIdCounter++;
+    const newText = {
+        id: stickerIdCounter,
+        type: 'text',
+        value: textVal,
+        color: color,
+        size: 32,
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        rotation: 0,
+        fontFamily: font
+    };
+    
+    stickers.push(newText);
+    selectedStickerId = newText.id;
+    document.getElementById('designer-text-input').value = '';
+    updateStickerToolbar();
+    drawCanvas();
+}
+window.addTextSticker = addTextSticker;
+
+function rotateSelectedSticker(angle) {
+    const sticker = stickers.find(s => s.id === selectedStickerId);
+    if (sticker) {
+        sticker.rotation = (sticker.rotation + angle) % 360;
+        drawCanvas();
+    }
+}
+window.rotateSelectedSticker = rotateSelectedSticker;
+
+function scaleSelectedSticker(factor) {
+    const sticker = stickers.find(s => s.id === selectedStickerId);
+    if (sticker) {
+        sticker.size = Math.round(sticker.size * factor);
+        sticker.size = Math.max(10, Math.min(300, sticker.size));
+        drawCanvas();
+    }
+}
+window.scaleSelectedSticker = scaleSelectedSticker;
+
+function deleteSelectedSticker() {
+    stickers = stickers.filter(s => s.id !== selectedStickerId);
+    selectedStickerId = null;
+    updateStickerToolbar();
+    drawCanvas();
+}
+window.deleteSelectedSticker = deleteSelectedSticker;
+
+function setDesignerMode(mode) {
+    designerMode = mode;
+    document.getElementById('btn-mode-select').classList.toggle('active', mode === 'select');
+    document.getElementById('btn-mode-draw').classList.toggle('active', mode === 'draw');
+    
+    const drawControls = document.getElementById('designer-draw-controls');
+    if (mode === 'draw') {
+        drawControls.classList.remove('hidden');
+        selectedStickerId = null;
+        updateStickerToolbar();
+    } else {
+        drawControls.classList.add('hidden');
+    }
+    drawCanvas();
+}
+window.setDesignerMode = setDesignerMode;
+
+function clearDesignerCanvas() {
+    if (confirm('確定要清空所有設計貼圖與手繪筆記嗎？')) {
+        stickers = [];
+        selectedStickerId = null;
+        if (drawingCtx) {
+            drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+        }
+        updateStickerToolbar();
+        drawCanvas();
+    }
+}
+window.clearDesignerCanvas = clearDesignerCanvas;
+
+function downloadLogo() {
+    const tempSelected = selectedStickerId;
+    selectedStickerId = null;
+    drawCanvas();
+    
+    const dataURL = canvas.toDataURL('image/png');
+    
+    selectedStickerId = tempSelected;
+    drawCanvas();
+    
+    const link = document.createElement('a');
+    link.download = 'my-flower-tea-logo.png';
+    link.href = dataURL;
+    link.click();
+}
+window.downloadLogo = downloadLogo;
+
+function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
+    return {
+        x: (clientX - rect.left) * (canvas.width / rect.width),
+        y: (clientY - rect.top) * (canvas.height / rect.height)
+    };
+}
+
+function updateStickerToolbar() {
+    const toolbar = document.getElementById('canvas-sticker-toolbar');
+    const status = document.getElementById('canvas-status');
+    if (selectedStickerId !== null && designerMode === 'select') {
+        toolbar.classList.remove('hidden');
+        status.textContent = '現在可以使用下方浮動工具列對貼圖進行旋轉、縮放或刪除！';
+    } else {
+        toolbar.classList.add('hidden');
+        status.textContent = designerMode === 'draw' ? '自由手繪模式已啟動，直接在畫布上拖曳進行畫圖。' : '點擊左側貼圖加入，並可在畫布上任意拖曳移動與編輯！';
+    }
+}
+
+function handleCanvasStart(e) {
+    if (e.cancelable) e.preventDefault();
+    const pos = getMousePos(e);
+    
+    if (designerMode === 'draw') {
+        isDrawing = true;
+        drawingCtx.beginPath();
+        drawingCtx.moveTo(pos.x, pos.y);
+    } else {
+        let clickedSticker = null;
+        for (let i = stickers.length - 1; i >= 0; i--) {
+            const s = stickers[i];
+            const clickDist = Math.hypot(pos.x - s.x, pos.y - s.y);
+            const hitRadius = s.type === 'text' ? Math.max(s.size * s.value.length / 3, s.size) / 2 + 10 : s.size / 2 + 10;
+            if (clickDist <= hitRadius) {
+                clickedSticker = s;
+                break;
+            }
+        }
+        
+        if (clickedSticker) {
+            selectedStickerId = clickedSticker.id;
+            isDraggingSticker = true;
+            dragOffset = {
+                x: pos.x - clickedSticker.x,
+                y: pos.y - clickedSticker.y
+            };
+        } else {
+            selectedStickerId = null;
+        }
+        updateStickerToolbar();
+        drawCanvas();
+    }
+}
+
+function handleCanvasMove(e) {
+    if (!isDrawing && !isDraggingSticker) return;
+    if (e.cancelable) e.preventDefault();
+    const pos = getMousePos(e);
+    
+    if (designerMode === 'draw' && isDrawing) {
+        const brushColor = document.getElementById('designer-brush-color').value;
+        const brushSize = parseInt(document.getElementById('designer-brush-size').value);
+        
+        drawingCtx.strokeStyle = brushColor;
+        drawingCtx.lineWidth = brushSize;
+        drawingCtx.lineCap = 'round';
+        drawingCtx.lineJoin = 'round';
+        
+        drawingCtx.lineTo(pos.x, pos.y);
+        drawingCtx.stroke();
+        drawCanvas();
+    } else if (isDraggingSticker && selectedStickerId !== null) {
+        const sticker = stickers.find(s => s.id === selectedStickerId);
+        if (sticker) {
+            sticker.x = pos.x - dragOffset.x;
+            sticker.y = pos.y - dragOffset.y;
+            sticker.x = Math.max(0, Math.min(canvas.width, sticker.x));
+            sticker.y = Math.max(0, Math.min(canvas.height, sticker.y));
+            drawCanvas();
+        }
+    }
+}
+
+function handleCanvasEnd(e) {
+    isDrawing = false;
+    isDraggingSticker = false;
+}
+
+window.initDesigner = initDesigner;
