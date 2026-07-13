@@ -1126,6 +1126,23 @@ function initDesigner() {
     
     // Preset Background Handlers (Removed background color selector)
     
+    // Brush Color Swatches Handlers (Black and White only)
+    const btnBlack = document.getElementById('btn-brush-black');
+    const btnWhite = document.getElementById('btn-brush-white');
+    const brushColorInput = document.getElementById('designer-brush-color');
+    if (btnBlack && btnWhite && brushColorInput) {
+        btnBlack.onclick = () => {
+            brushColorInput.value = '#000000';
+            btnBlack.classList.add('active');
+            btnWhite.classList.remove('active');
+        };
+        btnWhite.onclick = () => {
+            brushColorInput.value = '#ffffff';
+            btnWhite.classList.add('active');
+            btnBlack.classList.remove('active');
+        };
+    }
+
     // Preset Stickers Selection Handlers
     document.querySelectorAll('.sticker-btn').forEach(btn => {
         btn.onclick = () => {

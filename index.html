@@ -522,8 +522,13 @@
                                         <i class="fa-solid fa-paintbrush"></i> 自由手繪
                                     </button>
                                 </div>
-                                <div class="draw-options-row hidden" id="designer-draw-controls" style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                                    <input type="color" id="designer-brush-color" value="#ff4d6d" class="input-color" style="width: 40px; height: 35px; border: none; padding: 0; cursor: pointer; border-radius: var(--border-radius-sm);">
+                                <div class="draw-options-row hidden" id="designer-draw-controls" style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                                    <!-- Swatches for Black and White brush only -->
+                                    <div style="display: flex; gap: 0.35rem; align-items: center;">
+                                        <button id="btn-brush-black" class="brush-color-btn active" style="background-color: #000000;" title="黑色畫筆"></button>
+                                        <button id="btn-brush-white" class="brush-color-btn" style="background-color: #ffffff;" title="白色畫筆 (橡皮擦)"></button>
+                                    </div>
+                                    <input type="hidden" id="designer-brush-color" value="#000000">
                                     <input type="range" id="designer-brush-size" min="1" max="20" value="5" style="flex: 1; accent-color: var(--primary-color);">
                                     <span id="brush-size-val" style="font-size: 0.85rem; color: var(--text-muted); width: 30px;">5px</span>
                                 </div>

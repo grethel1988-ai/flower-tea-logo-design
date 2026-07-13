@@ -1803,3 +1803,22 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Brush Color Swatch Buttons */
+.brush-color-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.brush-color-btn.active {
+    border-color: var(--primary-color) !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(46, 111, 64, 0.4);
+}
+#btn-brush-white {
+    border: 2px solid #ccc;
+}
