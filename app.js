@@ -1247,8 +1247,6 @@ function toggleSelectedStickerColor() {
     if (sticker) {
         if (sticker.color === '#000000' || sticker.color === 'black') {
             sticker.color = '#ffffff'; // White
-        } else if (sticker.color === '#ffffff' || sticker.color === 'white') {
-            sticker.color = '#ffb703'; // Yellow
         } else {
             sticker.color = '#000000'; // Black
         }
