@@ -1062,18 +1062,26 @@ let dragOffset = { x: 0, y: 0 };
 let stickerIdCounter = 0;
 
 const stickerGlyphs = {
-    leaf: { value: '\uf06c', type: 'sticker', color: '#2d6a4f', size: 75 },
-    seedling: { value: '\uf4d8', type: 'sticker', color: '#40916c', size: 75 },
-    tree: { value: '\uf1bb', type: 'sticker', color: '#386641', size: 75 },
-    clover: { value: '\uf0c4', type: 'sticker', color: '#6a994e', size: 75 },
-    star: { value: '\uf005', type: 'sticker', color: '#ffd166', size: 75 },
-    moon: { value: '\uf186', type: 'sticker', color: '#f7d070', size: 75 },
-    sun: { value: '\uf185', type: 'sticker', color: '#f26522', size: 80 },
-    cloud: { value: '\uf0c2', type: 'sticker', color: '#a8dadc', size: 80 },
-    circle: { value: '\uf111', type: 'sticker', color: '#333333', size: 75 },
-    square: { value: '\uf0c8', type: 'sticker', color: '#333333', size: 75 },
-    triangle: { value: '\uf0d8', type: 'sticker', color: '#333333', size: 75 },
-    heart: { value: '\uf004', type: 'sticker', color: '#ef476f', size: 75 }
+    leaf: { value: '\uf06c', type: 'sticker', color: '#000000', size: 75 },
+    seedling: { value: '\uf4d8', type: 'sticker', color: '#000000', size: 75 },
+    tree: { value: '\uf1bb', type: 'sticker', color: '#000000', size: 75 },
+    clover: { value: '\uf0c4', type: 'sticker', color: '#000000', size: 75 },
+    wheat: { value: '\uf72d', type: 'sticker', color: '#000000', size: 75 },
+    star: { value: '\uf005', type: 'sticker', color: '#000000', size: 75 },
+    moon: { value: '\uf186', type: 'sticker', color: '#000000', size: 75 },
+    sun: { value: '\uf185', type: 'sticker', color: '#000000', size: 80 },
+    cloud: { value: '\uf0c2', type: 'sticker', color: '#000000', size: 80 },
+    snowflake: { value: '\uf2dc', type: 'sticker', color: '#000000', size: 75 },
+    bolt: { value: '\uf0e7', type: 'sticker', color: '#000000', size: 75 },
+    circle: { value: '\uf111', type: 'sticker', color: '#000000', size: 75 },
+    square: { value: '\uf0c8', type: 'sticker', color: '#000000', size: 75 },
+    triangle: { value: '\uf0d8', type: 'sticker', color: '#000000', size: 75 },
+    heart: { value: '\uf004', type: 'sticker', color: '#000000', size: 75 },
+    diamond: { value: '\uf619', type: 'sticker', color: '#000000', size: 75 },
+    star_sparkle: { value: '\uf0a3', type: 'sticker', color: '#000000', size: 75 },
+    shield: { value: '\uf3ed', type: 'sticker', color: '#000000', size: 75 },
+    smile: { value: '\uf118', type: 'sticker', color: '#000000', size: 75 },
+    peace: { value: '\uf67f', type: 'sticker', color: '#000000', size: 75 }
 };
 
 function initDesigner() {
@@ -1187,7 +1195,7 @@ function addTextSticker() {
     if (!textVal) return;
     
     const font = document.getElementById('designer-font-select').value;
-    const color = document.getElementById('designer-text-color').value;
+    const color = '#000000'; // Force pure black
     
     stickerIdCounter++;
     const newText = {
@@ -1272,7 +1280,28 @@ function downloadLogo() {
     selectedStickerId = null;
     drawCanvas();
     
-    const dataURL = canvas.toDataURL('image/png');
+    // Create a temporary canvas for exporting circular PNG
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width = canvas.width;
+    exportCanvas.height = canvas.height;
+    const exportCtx = exportCanvas.getContext('2d');
+    
+    // Create a circular clipping mask
+    const centerX = exportCanvas.width / 2;
+    const centerY = exportCanvas.height / 2;
+    const radius = exportCanvas.width / 2;
+    
+    exportCtx.save();
+    exportCtx.beginPath();
+    exportCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    exportCtx.closePath();
+    exportCtx.clip();
+    
+    // Draw the main canvas onto the export canvas (inside the circular clip)
+    exportCtx.drawImage(canvas, 0, 0);
+    exportCtx.restore();
+    
+    const dataURL = exportCanvas.toDataURL('image/png');
     
     selectedStickerId = tempSelected;
     drawCanvas();
