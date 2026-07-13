@@ -1080,7 +1080,7 @@ const stickerGlyphs = {
     square: { value: '\uf0c8', type: 'sticker', color: '#000000', size: 75 },
     triangle: { value: '\uf0d8', type: 'sticker', color: '#000000', size: 75 },
     heart: { value: '\uf004', type: 'sticker', color: '#000000', size: 75 },
-    diamond: { value: '\uf619', type: 'sticker', color: '#000000', size: 75 },
+    diamond: { value: '\uf219', type: 'sticker', color: '#000000', size: 75 },
     star_sparkle: { value: '\uf0a3', type: 'sticker', color: '#000000', size: 75 },
     shield: { value: '\uf3ed', type: 'sticker', color: '#000000', size: 75 },
     smile: { value: '\uf118', type: 'sticker', color: '#000000', size: 75 },
