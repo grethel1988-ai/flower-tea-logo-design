@@ -700,28 +700,27 @@ window.showLogoDetail = showLogoDetail;
 // 7. Interactive Logo Match Game Logic
 // ==========================================
 const allMatchBrands = [
-    { id: 0, name: "星巴克 (Starbucks)", logoUrl: "https://upload.wikimedia.org/wikipedia/en/d/d3/Starbucks_Corporation_Logo_2011.svg" },
-    { id: 1, name: "麥當勞 (McDonald's)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg" },
-    { id: 2, name: "Nike (耐吉)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" },
-    { id: 3, name: "Apple (蘋果)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" },
-    { id: 4, name: "Amazon (亞馬遜)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
-    { id: 5, name: "FedEx (聯邦快遞)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b9/FedEx_Express.svg" },
-    { id: 6, name: "Chanel (香奈兒)", logoUrl: "https://upload.wikimedia.org/wikipedia/en/9/92/Chanel_logo_interlocking_cs.svg" },
-    { id: 7, name: "Ferrari (法拉利)", logoUrl: "https://aleen42.github.io/badges/src/ferrari.svg" },
-    { id: 8, name: "Pepsi (百事可樂)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Pepsi_2023.svg" },
-    { id: 9, name: "Lego (樂高)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/24/LEGO_logo.svg" },
-    { id: 10, name: "Microsoft (微軟)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" },
-    { id: 11, name: "Google (谷歌)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
-    { id: 12, name: "Facebook (臉書)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.svg" },
-    { id: 13, name: "Coca-Cola (可口可樂)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" },
-    { id: 14, name: "YouTube", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" },
-    { id: 15, name: "X (原 Twitter)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023.svg" },
-    { id: 16, name: "Tesla (特斯拉)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors_Mono_Logo.svg" },
-    { id: 17, name: "Disney (迪士尼)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney_logo.svg" },
-    { id: 18, name: "Adidas (愛迪達)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg" },
-    { id: 19, name: "Star Wars (星戰)", logoUrl: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg" }
+    { id: 0, name: "星巴克 (Starbucks)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/starbucks.svg" },
+    { id: 1, name: "麥當勞 (McDonald's)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/mcdonalds.svg" },
+    { id: 2, name: "Nike (耐吉)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/nike.svg" },
+    { id: 3, name: "Apple (蘋果)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/apple.svg" },
+    { id: 4, name: "Amazon (亞馬遜)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/amazon.svg" },
+    { id: 5, name: "7-11 (統一超商)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2YyNjUyMiIvPjxyZWN0IHg9IjUiIHk9IjUiIHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzAwODA1MCIvPjxwYXRoIGQ9Ik0yMCwyNSBoNjAgdjEyIEw0NSw3OCBIMzAgTDYwLDM3IEgyMCBaIiBmaWxsPSIjZjI2NTIyIi8+PHRleHQgeD0iNTAiIHk9IjM0IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkVMRVZFMjwvdGV4dD48L3N2Zz4=" },
+    { id: 6, name: "Chanel (香奈兒)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/chanel.svg" },
+    { id: 7, name: "台積電 (TSMC)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgODAiPjx0ZXh0IHg9IjYwIiB5PSI0NSIgZm9udC1mYW1pbHk9IidPdWZmaXQnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iI2UyMDAxYSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+dHNtYzwvdGV4dD48cmVjdCB4PSIyNSIgeT0iMTUiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyIiBmaWxsPSIjZTIwMDFhIi8+PHJlY3QgeD0iMjUiIHk9IjUzIiB3aWR0aD0iNzAiIGhlaWdodD0iMiIgZmlsbD0iI2UyMDAxYSIvPjwvc3ZnPg==" },
+    { id: 8, name: "全聯 (PX Mart)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MiIgZmlsbD0iIzAwNGVhMiIgc3Ryb2tlPSIjZTYwMDEyIiBzdHJva2Utd2lkdGg9IjYiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjgiLz48cGF0aCBkPSJNMzUsNTAgaDMwIE01MCwzNSB2MzAiIHN0cm9rZT0iI2U2MDAxMiIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=" },
+    { id: 9, name: "Lego (樂高)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/lego.svg" },
+    { id: 10, name: "Microsoft (微軟)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/microsoft.svg" },
+    { id: 11, name: "Google (谷歌)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/google.svg" },
+    { id: 12, name: "Facebook (臉書)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/facebook.svg" },
+    { id: 13, name: "Coca-Cola (可口可樂)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/cocacola.svg" },
+    { id: 14, name: "YouTube", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/youtube.svg" },
+    { id: 15, name: "X (原 Twitter)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/x.svg" },
+    { id: 16, name: "Tesla (特斯拉)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/tesla.svg" },
+    { id: 17, name: "家樂福 (Carrefour)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB4PSIxNSIgeT0iMTUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCIgcng9IjEwIiBmaWxsPSIjMDA0ZWEyIi8+PHBhdGggZD0iTSA0NSwyNSBBIDI1LDI1IDAgMCwwIDQ1LDc1IEwgMjAsNTAgWiIgZmlsbD0iI2U2MDAxMiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjE4IiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iNzAiIHk9IjU4IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5DPC90ZXh0Pjwvc3ZnPg==" },
+    { id: 18, name: "Adidas (愛迪達)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/adidas.svg" },
+    { id: 19, name: "Star Wars (星戰)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/starwars.svg" }
 ];
-
 let currentGameRoundIndex = 0;
 let roundShuffledSlots = [];
 let roundShuffledTags = [];
