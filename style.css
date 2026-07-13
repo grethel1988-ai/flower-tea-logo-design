@@ -864,7 +864,7 @@ body {
     gap: 2rem;
     height: 100%;
     flex-grow: 1;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .game-control-card {
@@ -953,7 +953,7 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .level-card {
