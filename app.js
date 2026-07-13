@@ -656,7 +656,7 @@ const logoDetails = [
     {
         title: "📦 亞馬遜 (Amazon) — 微笑與業務範圍的融合",
         text: "亞馬遜 LOGO 下方有一條黃色弧線箭頭，從字母『A』指向『Z』，同時也構成一個溫暖的微笑。這非常巧妙且簡約地表達了兩個核心概念：1. 亞馬遜販售從 A 到 Z 的所有商品（業務廣度）；2. 我們的服務能讓顧客會心一笑（品牌溫度）。",
-        logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+        logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgNjUiPjx0ZXh0IHg9Ijc1IiB5PSIzOCIgZm9udC1mYW1pbHk9IidBcmlhbCBCbGFjaycsICdJbXBhY3QnLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjM0IiBsZXR0ZXItc3BhY2luZz0iLTIiIGZpbGw9IiMwMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmFtYXpvbjwvdGV4dD48cGF0aCBkPSJNIDI4LDQ0 CIDU1LDU4IDk1LDU4IDEyMiw0NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY5OTAwIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0gMTE2LDQyIEwgMTI2LDQzIEwgMTIyLDUzIEMgMTIxLDQ5IDExOSw0NSAxMTYsNDIgWiIgZmlsbD0iI2ZmOTkwMCIvPjwvc3ZnPg=="
     },
     {
         title: "👜 香奈兒 (Chanel) — 對稱與雙 C 的秩序美",
@@ -704,7 +704,7 @@ const allMatchBrands = [
     { id: 1, name: "麥當勞 (McDonald's)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/mcdonalds.svg" },
     { id: 2, name: "Nike (耐吉)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/nike.svg" },
     { id: 3, name: "Apple (蘋果)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/apple.svg" },
-    { id: 4, name: "Amazon (亞馬遜)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/amazon.svg" },
+    { id: 4, name: "Amazon (亞馬遜)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgNjUiPjx0ZXh0IHg9Ijc1IiB5PSIzOCIgZm9udC1mYW1pbHk9IidBcmlhbCBCbGFjaycsICdJbXBhY3QnLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjM0IiBsZXR0ZXItc3BhY2luZz0iLTIiIGZpbGw9IiMwMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmFtYXpvbjwvdGV4dD48cGF0aCBkPSJNIDI4LDQ0 CIDU1LDU4IDk1LDU4IDEyMiw0NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmY5OTAwIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0gMTE2LDQyIEwgMTI2LDQzIEwgMTIyLDUzIEMgMTIxLDQ5IDExOSw0NSAxMTYsNDIgWiIgZmlsbD0iI2ZmOTkwMCIvPjwvc3ZnPg==" },
     { id: 5, name: "7-11 (統一超商)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2YyNjUyMiIvPjxyZWN0IHg9IjUiIHk9IjUiIHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzAwODA1MCIvPjxwYXRoIGQ9Ik0yMCwyNSBoNjAgdjEyIEw0NSw3OCBIMzAgTDYwLDM3IEgyMCBaIiBmaWxsPSIjZjI2NTIyIi8+PHRleHQgeD0iNTAiIHk9IjM0IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkVMRVZFMjwvdGV4dD48L3N2Zz4=" },
     { id: 6, name: "Chanel (香奈兒)", logoUrl: "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/chanel.svg" },
     { id: 7, name: "台積電 (TSMC)", logoUrl: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgODAiPjx0ZXh0IHg9IjYwIiB5PSI0NSIgZm9udC1mYW1pbHk9IidPdWZmaXQnLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSIyOCIgZmlsbD0iI2UyMDAxYSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+dHNtYzwvdGV4dD48cmVjdCB4PSIyNSIgeT0iMTUiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyIiBmaWxsPSIjZTIwMDFhIi8+PHJlY3QgeD0iMjUiIHk9IjUzIiB3aWR0aD0iNzAiIGhlaWdodD0iMiIgZmlsbD0iI2UyMDAxYSIvPjwvc3ZnPg==" },
