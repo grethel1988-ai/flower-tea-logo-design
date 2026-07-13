@@ -412,22 +412,14 @@ body {
 }
 
 .section-grid {
-    display: grid;
-    grid-template-columns: 1.8fr 1.2fr;
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     flex-grow: 1;
     overflow: hidden;
 }
 
 .card-wide {
-    height: 100%;
-    overflow: hidden;
-}
-
-.card-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
     height: 100%;
     overflow: hidden;
 }
