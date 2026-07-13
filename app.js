@@ -1145,6 +1145,11 @@ function drawCanvas() {
         ctx.translate(item.x, item.y);
         ctx.rotate(item.rotation * Math.PI / 180);
         
+        // Apply horizontal and vertical flip scaling
+        const scaleX = item.flipH ? -1 : 1;
+        const scaleY = item.flipV ? -1 : 1;
+        ctx.scale(scaleX, scaleY);
+        
         ctx.fillStyle = item.color;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -1254,6 +1259,46 @@ function toggleSelectedStickerColor() {
     }
 }
 window.toggleSelectedStickerColor = toggleSelectedStickerColor;
+
+function moveSelectedStickerUp() {
+    const idx = stickers.findIndex(s => s.id === selectedStickerId);
+    if (idx !== -1 && idx < stickers.length - 1) {
+        const temp = stickers[idx];
+        stickers[idx] = stickers[idx + 1];
+        stickers[idx + 1] = temp;
+        drawCanvas();
+    }
+}
+window.moveSelectedStickerUp = moveSelectedStickerUp;
+
+function moveSelectedStickerDown() {
+    const idx = stickers.findIndex(s => s.id === selectedStickerId);
+    if (idx !== -1 && idx > 0) {
+        const temp = stickers[idx];
+        stickers[idx] = stickers[idx - 1];
+        stickers[idx - 1] = temp;
+        drawCanvas();
+    }
+}
+window.moveSelectedStickerDown = moveSelectedStickerDown;
+
+function flipSelectedStickerHorizontal() {
+    const sticker = stickers.find(s => s.id === selectedStickerId);
+    if (sticker) {
+        sticker.flipH = !sticker.flipH;
+        drawCanvas();
+    }
+}
+window.flipSelectedStickerHorizontal = flipSelectedStickerHorizontal;
+
+function flipSelectedStickerVertical() {
+    const sticker = stickers.find(s => s.id === selectedStickerId);
+    if (sticker) {
+        sticker.flipV = !sticker.flipV;
+        drawCanvas();
+    }
+}
+window.flipSelectedStickerVertical = flipSelectedStickerVertical;
 
 function deleteSelectedSticker() {
     stickers = stickers.filter(s => s.id !== selectedStickerId);
