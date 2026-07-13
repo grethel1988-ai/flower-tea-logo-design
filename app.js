@@ -1200,7 +1200,7 @@ function addTextSticker() {
     if (!textVal) return;
     
     const font = document.getElementById('designer-font-select').value;
-    const color = '#000000'; // Force pure black
+    const color = '#ffb703'; // Yellow by default
     
     stickerIdCounter++;
     const newText = {
@@ -1246,9 +1246,11 @@ function toggleSelectedStickerColor() {
     const sticker = stickers.find(s => s.id === selectedStickerId);
     if (sticker) {
         if (sticker.color === '#000000' || sticker.color === 'black') {
-            sticker.color = '#ffffff';
+            sticker.color = '#ffffff'; // White
+        } else if (sticker.color === '#ffffff' || sticker.color === 'white') {
+            sticker.color = '#ffb703'; // Yellow
         } else {
-            sticker.color = '#000000';
+            sticker.color = '#000000'; // Black
         }
         drawCanvas();
     }
