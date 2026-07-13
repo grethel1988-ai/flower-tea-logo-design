@@ -354,9 +354,6 @@ function selectOption(selectedIndex) {
     // Disable all options
     buttons.forEach((btn, idx) => {
         btn.classList.add('disabled');
-        if (idx === question.answer) {
-            btn.classList.add('correct');
-        }
         if (idx === selectedIndex && selectedIndex !== question.answer) {
             btn.classList.add('wrong');
         }
@@ -377,7 +374,8 @@ function selectOption(selectedIndex) {
         feedbackStatus.querySelector('span').textContent = "回答錯誤！";
     }
     
-    feedbackExplanation.textContent = question.explanation;
+    // 不顯示解析，避免透露正確答案
+    feedbackExplanation.style.display = 'none';
     feedbackBox.classList.remove('hidden');
 }
 
