@@ -1065,8 +1065,8 @@ const stickerGlyphs = {
     leaf: { value: '\uf06c', type: 'sticker', color: '#000000', size: 75 },
     seedling: { value: '\uf4d8', type: 'sticker', color: '#000000', size: 75 },
     tree: { value: '\uf1bb', type: 'sticker', color: '#000000', size: 75 },
-    clover: { value: '\uf0c4', type: 'sticker', color: '#000000', size: 75 },
-    wheat: { value: '\uf72d', type: 'sticker', color: '#000000', size: 75 },
+    clover: { value: '\ue139', type: 'sticker', color: '#000000', size: 75 },
+    wheat: { value: '\ue2cd', type: 'sticker', color: '#000000', size: 75 },
     star: { value: '\uf005', type: 'sticker', color: '#000000', size: 75 },
     moon: { value: '\uf186', type: 'sticker', color: '#000000', size: 75 },
     sun: { value: '\uf185', type: 'sticker', color: '#000000', size: 80 },
@@ -1081,10 +1081,10 @@ const stickerGlyphs = {
     star_sparkle: { value: '\uf0a3', type: 'sticker', color: '#000000', size: 75 },
     shield: { value: '\uf3ed', type: 'sticker', color: '#000000', size: 75 },
     smile: { value: '\uf118', type: 'sticker', color: '#000000', size: 75 },
-    peace: { value: '\uf67f', type: 'sticker', color: '#000000', size: 75 },
-    cat: { value: '\uf2be', type: 'sticker', color: '#000000', size: 75 },
+    peace: { value: '\uf67c', type: 'sticker', color: '#000000', size: 75 },
+    cat: { value: '\uf6be', type: 'sticker', color: '#000000', size: 75 },
     dog: { value: '\uf6d3', type: 'sticker', color: '#000000', size: 75 },
-    dove: { value: '\uf4ff', type: 'sticker', color: '#000000', size: 75 },
+    dove: { value: '\uf4ba', type: 'sticker', color: '#000000', size: 75 },
     fish: { value: '\uf578', type: 'sticker', color: '#000000', size: 75 },
     frog: { value: '\uf52e', type: 'sticker', color: '#000000', size: 75 }
 };
@@ -1241,6 +1241,19 @@ function scaleSelectedSticker(factor) {
     }
 }
 window.scaleSelectedSticker = scaleSelectedSticker;
+
+function toggleSelectedStickerColor() {
+    const sticker = stickers.find(s => s.id === selectedStickerId);
+    if (sticker) {
+        if (sticker.color === '#000000' || sticker.color === 'black') {
+            sticker.color = '#ffffff';
+        } else {
+            sticker.color = '#000000';
+        }
+        drawCanvas();
+    }
+}
+window.toggleSelectedStickerColor = toggleSelectedStickerColor;
 
 function deleteSelectedSticker() {
     stickers = stickers.filter(s => s.id !== selectedStickerId);
