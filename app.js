@@ -1056,6 +1056,13 @@ let designerMode = 'select'; // 'select' or 'draw'
 let canvasBgColor = '#ffffff';
 let stickers = [];
 let selectedStickerId = null;
+        selectedStickerIds = [];
+        selectedStickerIds = [];
+let selectedStickerIds = []; // Multi-select support
+let isMarqueeing = false;
+let marqueeStart = { x: 0, y: 0 };
+let marqueeCurrent = { x: 0, y: 0 };
+let dragOffsets = []; // Multi-select offsets
 let isDrawing = false;
 let isDraggingSticker = false;
 let dragOffset = { x: 0, y: 0 };
@@ -1165,7 +1172,7 @@ function drawCanvas() {
             ctx.fillText(item.value, 0, 0);
         }
         
-        if (selectedStickerId === item.id && designerMode === 'select') {
+        if (selectedStickerIds.includes(item.id) && designerMode === 'select') {
             ctx.strokeStyle = 'var(--primary-color)';
             ctx.lineWidth = 2;
             ctx.setLineDash([6, 4]);
@@ -1176,6 +1183,23 @@ function drawCanvas() {
         
         ctx.restore();
     });
+    
+    // Draw Marquee Selection Box
+    if (isMarqueeing && designerMode === 'select') {
+        ctx.save();
+        ctx.strokeStyle = 'var(--primary-color)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        const x = marqueeStart.x;
+        const y = marqueeStart.y;
+        const w = marqueeCurrent.x - marqueeStart.x;
+        const h = marqueeCurrent.y - marqueeStart.y;
+        ctx.strokeRect(x, y, w, h);
+        
+        ctx.fillStyle = 'rgba(46, 111, 64, 0.08)'; // Light brand green fill
+        ctx.fillRect(x, y, w, h);
+        ctx.restore();
+    }
 }
 
 function addPresetSticker(key) {
@@ -1196,6 +1220,7 @@ function addPresetSticker(key) {
     };
     stickers.push(newSticker);
     selectedStickerId = newSticker.id;
+    selectedStickerIds = [newSticker.id];
     updateStickerToolbar();
     drawCanvas();
 }
@@ -1222,6 +1247,7 @@ function addTextSticker() {
     
     stickers.push(newText);
     selectedStickerId = newText.id;
+    selectedStickerIds = [newText.id];
     document.getElementById('designer-text-input').value = '';
     updateStickerToolbar();
     drawCanvas();
@@ -1229,79 +1255,87 @@ function addTextSticker() {
 window.addTextSticker = addTextSticker;
 
 function rotateSelectedSticker(angle) {
-    const sticker = stickers.find(s => s.id === selectedStickerId);
-    if (sticker) {
-        sticker.rotation = (sticker.rotation + angle) % 360;
-        drawCanvas();
-    }
+    stickers.forEach(s => {
+        if (selectedStickerIds.includes(s.id)) {
+            s.rotation = (s.rotation + angle) % 360;
+        }
+    });
+    drawCanvas();
 }
 window.rotateSelectedSticker = rotateSelectedSticker;
 
 function scaleSelectedSticker(factor) {
-    const sticker = stickers.find(s => s.id === selectedStickerId);
-    if (sticker) {
-        sticker.size = Math.round(sticker.size * factor);
-        sticker.size = Math.max(10, Math.min(300, sticker.size));
-        drawCanvas();
-    }
+    stickers.forEach(s => {
+        if (selectedStickerIds.includes(s.id)) {
+            s.size = Math.round(s.size * factor);
+            s.size = Math.max(10, Math.min(300, s.size));
+        }
+    });
+    drawCanvas();
 }
 window.scaleSelectedSticker = scaleSelectedSticker;
 
 function toggleSelectedStickerColor() {
-    const sticker = stickers.find(s => s.id === selectedStickerId);
-    if (sticker) {
-        if (sticker.color === '#000000' || sticker.color === 'black') {
-            sticker.color = '#ffffff'; // White
-        } else {
-            sticker.color = '#000000'; // Black
-        }
+    const firstSelected = stickers.find(s => selectedStickerIds.includes(s.id));
+    if (firstSelected) {
+        const targetColor = (firstSelected.color === '#000000' || firstSelected.color === 'black') ? '#ffffff' : '#000000';
+        stickers.forEach(s => {
+            if (selectedStickerIds.includes(s.id)) {
+                s.color = targetColor;
+            }
+        });
         drawCanvas();
     }
 }
 window.toggleSelectedStickerColor = toggleSelectedStickerColor;
 
 function moveSelectedStickerUp() {
-    const idx = stickers.findIndex(s => s.id === selectedStickerId);
-    if (idx !== -1 && idx < stickers.length - 1) {
-        const temp = stickers[idx];
-        stickers[idx] = stickers[idx + 1];
-        stickers[idx + 1] = temp;
-        drawCanvas();
+    for (let i = stickers.length - 2; i >= 0; i--) {
+        if (selectedStickerIds.includes(stickers[i].id) && !selectedStickerIds.includes(stickers[i+1].id)) {
+            const temp = stickers[i];
+            stickers[i] = stickers[i+1];
+            stickers[i+1] = temp;
+        }
     }
+    drawCanvas();
 }
 window.moveSelectedStickerUp = moveSelectedStickerUp;
 
 function moveSelectedStickerDown() {
-    const idx = stickers.findIndex(s => s.id === selectedStickerId);
-    if (idx !== -1 && idx > 0) {
-        const temp = stickers[idx];
-        stickers[idx] = stickers[idx - 1];
-        stickers[idx - 1] = temp;
-        drawCanvas();
+    for (let i = 1; i < stickers.length; i++) {
+        if (selectedStickerIds.includes(stickers[i].id) && !selectedStickerIds.includes(stickers[i-1].id)) {
+            const temp = stickers[i];
+            stickers[i] = stickers[i-1];
+            stickers[i-1] = temp;
+        }
     }
+    drawCanvas();
 }
 window.moveSelectedStickerDown = moveSelectedStickerDown;
 
 function flipSelectedStickerHorizontal() {
-    const sticker = stickers.find(s => s.id === selectedStickerId);
-    if (sticker) {
-        sticker.flipH = !sticker.flipH;
-        drawCanvas();
-    }
+    stickers.forEach(s => {
+        if (selectedStickerIds.includes(s.id)) {
+            s.flipH = !s.flipH;
+        }
+    });
+    drawCanvas();
 }
 window.flipSelectedStickerHorizontal = flipSelectedStickerHorizontal;
 
 function flipSelectedStickerVertical() {
-    const sticker = stickers.find(s => s.id === selectedStickerId);
-    if (sticker) {
-        sticker.flipV = !sticker.flipV;
-        drawCanvas();
-    }
+    stickers.forEach(s => {
+        if (selectedStickerIds.includes(s.id)) {
+            s.flipV = !s.flipV;
+        }
+    });
+    drawCanvas();
 }
 window.flipSelectedStickerVertical = flipSelectedStickerVertical;
 
 function deleteSelectedSticker() {
-    stickers = stickers.filter(s => s.id !== selectedStickerId);
+    stickers = stickers.filter(s => !selectedStickerIds.includes(s.id));
+    selectedStickerIds = [];
     selectedStickerId = null;
     updateStickerToolbar();
     drawCanvas();
@@ -1402,6 +1436,7 @@ function updateStickerToolbar() {
 function handleCanvasStart(e) {
     if (e.cancelable) e.preventDefault();
     const pos = getMousePos(e);
+    const isShift = e.shiftKey;
     
     if (designerMode === 'draw') {
         isDrawing = true;
@@ -1420,14 +1455,43 @@ function handleCanvasStart(e) {
         }
         
         if (clickedSticker) {
-            selectedStickerId = clickedSticker.id;
             isDraggingSticker = true;
-            dragOffset = {
-                x: pos.x - clickedSticker.x,
-                y: pos.y - clickedSticker.y
-            };
+            
+            // Handle shift key multi-select toggling
+            if (isShift) {
+                if (selectedStickerIds.includes(clickedSticker.id)) {
+                    selectedStickerIds = selectedStickerIds.filter(id => id !== clickedSticker.id);
+                } else {
+                    selectedStickerIds.push(clickedSticker.id);
+                }
+            } else {
+                // If it is not selected, make it the single selection
+                if (!selectedStickerIds.includes(clickedSticker.id)) {
+                    selectedStickerIds = [clickedSticker.id];
+                }
+            }
+            
+            // Primary selected ID (the last clicked one)
+            selectedStickerId = selectedStickerIds.length > 0 ? selectedStickerIds[selectedStickerIds.length - 1] : null;
+            
+            // Initialize offsets for all dragged items
+            dragOffsets = selectedStickerIds.map(id => {
+                const s = stickers.find(st => st.id === id);
+                return {
+                    id: id,
+                    offsetX: pos.x - s.x,
+                    offsetY: pos.y - s.y
+                };
+            });
         } else {
-            selectedStickerId = null;
+            // Clicked on empty space: either clear or start marquee
+            if (!isShift) {
+                selectedStickerIds = [];
+                selectedStickerId = null;
+            }
+            isMarqueeing = true;
+            marqueeStart = { x: pos.x, y: pos.y };
+            marqueeCurrent = { x: pos.x, y: pos.y };
         }
         updateStickerToolbar();
         drawCanvas();
@@ -1435,7 +1499,7 @@ function handleCanvasStart(e) {
 }
 
 function handleCanvasMove(e) {
-    if (!isDrawing && !isDraggingSticker) return;
+    if (!isDrawing && !isDraggingSticker && !isMarqueeing) return;
     if (e.cancelable) e.preventDefault();
     const pos = getMousePos(e);
     
@@ -1451,19 +1515,55 @@ function handleCanvasMove(e) {
         drawingCtx.lineTo(pos.x, pos.y);
         drawingCtx.stroke();
         drawCanvas();
-    } else if (isDraggingSticker && selectedStickerId !== null) {
-        const sticker = stickers.find(s => s.id === selectedStickerId);
-        if (sticker) {
-            sticker.x = pos.x - dragOffset.x;
-            sticker.y = pos.y - dragOffset.y;
-            sticker.x = Math.max(0, Math.min(canvas.width, sticker.x));
-            sticker.y = Math.max(0, Math.min(canvas.height, sticker.y));
-            drawCanvas();
-        }
+    } else if (isDraggingSticker && selectedStickerIds.length > 0) {
+        // Drag all selected stickers together using offsets
+        stickers.forEach(s => {
+            if (selectedStickerIds.includes(s.id)) {
+                const offset = dragOffsets.find(o => o.id === s.id);
+                if (offset) {
+                    s.x = pos.x - offset.offsetX;
+                    s.y = pos.y - offset.offsetY;
+                    s.x = Math.max(0, Math.min(canvas.width, s.x));
+                    s.y = Math.max(0, Math.min(canvas.height, s.y));
+                }
+            }
+        });
+        drawCanvas();
+    } else if (isMarqueeing) {
+        marqueeCurrent = { x: pos.x, y: pos.y };
+        drawCanvas();
     }
 }
 
 function handleCanvasEnd(e) {
+    if (isMarqueeing) {
+        isMarqueeing = false;
+        
+        // Find stickers inside marquee bounding box
+        const minX = Math.min(marqueeStart.x, marqueeCurrent.x);
+        const maxX = Math.max(marqueeStart.x, marqueeCurrent.x);
+        const minY = Math.min(marqueeStart.y, marqueeCurrent.y);
+        const maxY = Math.max(marqueeStart.y, marqueeCurrent.y);
+        
+        const boxWidth = maxX - minX;
+        const boxHeight = maxY - minY;
+        
+        // Only select if the box dragged has some size (not a tiny accidental click drag)
+        if (boxWidth > 5 || boxHeight > 5) {
+            const foundStickers = stickers.filter(s => {
+                return s.x >= minX && s.x <= maxX && s.y >= minY && s.y <= maxY;
+            });
+            
+            if (foundStickers.length > 0) {
+                // Add marquee-found stickers to selection
+                const foundIds = foundStickers.map(s => s.id);
+                selectedStickerIds = [...new Set([...selectedStickerIds, ...foundIds])];
+                selectedStickerId = selectedStickerIds[selectedStickerIds.length - 1];
+            }
+        }
+        updateStickerToolbar();
+        drawCanvas();
+    }
     isDrawing = false;
     isDraggingSticker = false;
 }
