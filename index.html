@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花茶 LOGO 設計與色彩美學 - 互動學習平台</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Decoration -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-palette brand-icon"></i>
+                <div class="brand-text">
+                    <h1>花茶美學</h1>
+                    <span>LOGO 設計與色彩</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#dashboard" class="menu-item active" id="btn-nav-dashboard">
+                    <i class="fa-solid fa-house"></i> 首頁大廳
+                </a>
+                <a href="#slides" class="menu-item" id="btn-nav-slides">
+                    <i class="fa-solid fa-chalkboard-user"></i> 簡報知識庫
+                </a>
+                <a href="#quiz" class="menu-item" id="btn-nav-quiz">
+                    <i class="fa-solid fa-clipboard-question"></i> 概念挑戰賽
+                </a>
+                <a href="#game" class="menu-item" id="btn-nav-game">
+                    <i class="fa-solid fa-flask"></i> 調色大挑戰
+                </a>
+                <a href="#match" class="menu-item" id="btn-nav-match">
+                    <i class="fa-solid fa-puzzle-piece"></i> LOGO挑戰賽
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>國小美術課程專用系統</p>
+                <div class="teacher-badge"><i class="fa-solid fa-user-tie"></i> 專業美術老師指導</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-title">
+                    <h2 id="current-section-title">首頁大廳</h2>
+                    <p id="current-section-desc">歡迎來到花茶 LOGO 設計一日課程！</p>
+                </div>
+                <div class="header-meta">
+                    <div class="badge"><i class="fa-solid fa-calendar-day"></i> 一日精華課程 (7節課)</div>
+                </div>
+            </header>
+
+            <!-- SECTION: Dashboard -->
+            <section id="sec-dashboard" class="content-section active">
+                <div class="dashboard-hero">
+                    <div class="hero-text">
+                        <h3>綻放設計之美，調出你的專屬茶香</h3>
+                        <p>今天，你將化身為「花茶品牌設計師」與「色彩魔法師」。我們將從 LOGO 設計理論出發，認識壓克力顏料的混色密碼，並透過有趣的互動遊戲，最後親手在圖畫紙上畫出屬於你的花茶 LOGO！</p>
+                        <button class="btn btn-primary" onclick="switchSection('slides')">
+                            開始探索簡報 <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="hero-image-placeholder">
+                        <i class="fa-solid fa-leaf leaf-animation"></i>
+                        <i class="fa-solid fa-mug-hot tea-animation"></i>
+                    </div>
+                </div>
+
+                <div class="section-grid">
+                    <!-- Course Overview Card -->
+                    <div class="card card-wide">
+                        <div class="card-header">
+                            <h4><i class="fa-solid fa-route text-primary"></i> 課程大綱 (7節課計畫)</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="timeline">
+                                <li>
+                                    <span class="time-tag">第 1~2 節</span>
+                                    <strong>LOGO 設計理論與花草元素</strong>
+                                    <p>認識商標與視覺識別，學習類似色（和諧）與對比色（醒目）的搭配原理，觀察並簡化大自然花草外形。</p>
+                                </li>
+                                <li>
+                                    <span class="time-tag">第 3 節</span>
+                                    <strong>壓克力顏料與四原色基礎</strong>
+                                    <p>掌握壓克力顏料快乾、防水的特性，理解青(C)、洋紅(M)、黃(Y)、白(W)四原色調色技巧。</p>
+                                </li>
+                                <li>
+                                    <span class="time-tag">第 4 節</span>
+                                    <strong>線上測驗與調色遊戲</strong>
+                                    <p>使用本網頁進行色彩與設計概念測驗，並在「調色大挑戰」中配對出花茶經典色，累計積分！</p>
+                                </li>
+                                <li>
+                                    <span class="time-tag">第 5~6 節</span>
+                                    <strong>LOGO 實作繪製</strong>
+                                    <p>於圖畫紙上繪製花茶 LOGO 草圖，並使用壓克力顏料四原色進行上色，展現個人品牌風格。</p>
+                                </li>
+                                <li>
+                                    <span class="time-tag">第 7 節</span>
+                                    <strong>發表會與工具整理</strong>
+                                    <p>展示設計作品，分享創作與調色心得。學習清洗梅花盤與保養壓克力畫筆。</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Shortcut Cards -->
+                    <div class="card-column">
+                        <div class="card card-interactive" onclick="switchSection('slides')">
+                            <div class="card-icon-wrapper text-primary bg-primary-light">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div class="card-info">
+                                <h5>簡報知識庫</h5>
+                                <p>快速瀏覽 LOGO 色彩設計與壓克力調色理論</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-interactive" onclick="switchSection('quiz')">
+                            <div class="card-icon-wrapper text-secondary bg-secondary-light">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div class="card-info">
+                                <h5>概念挑戰賽</h5>
+                                <p>答題檢驗學習成果，爭取滿分榮耀</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-interactive" onclick="switchSection('game')">
+                            <div class="card-icon-wrapper text-accent bg-accent-light">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div class="card-info">
+                                <h5>調色大挑戰</h5>
+                                <p>用 C、M、Y、W 玩調色遊戲，挑戰調配花茶色</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-interactive" onclick="switchSection('match')">
+                            <div class="card-icon-wrapper" style="color: #9b5de5; background-color: #f3ebfc; width: 60px; height: 60px; border-radius: var(--border-radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0;">
+                                <i class="fa-solid fa-puzzle-piece"></i>
+                            </div>
+                            <div class="card-info">
+                                <h5>LOGO挑戰賽</h5>
+                                <p>配對 20 個經典 LOGO 與品牌，考驗幾何觀察力</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Slides -->
+            <section id="sec-slides" class="content-section">
+                <div class="slides-container">
+                    <div class="slide-view" id="slide-viewport">
+                        <!-- Slides will be dynamically rendered here -->
+                    </div>
+                    <div class="slide-controls">
+                        <button class="btn btn-secondary" id="btn-prev-slide" onclick="changeSlide(-1)">
+                            <i class="fa-solid fa-chevron-left"></i> 上一頁
+                        </button>
+                        <span class="slide-indicator" id="slide-index-indicator">Slide 1 / 5</span>
+                        <button class="btn btn-secondary" id="btn-next-slide" onclick="changeSlide(1)">
+                            下一頁 <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Quiz -->
+            <section id="sec-quiz" class="content-section">
+                <div class="quiz-container">
+                    <!-- Quiz Intro Card -->
+                    <div class="card" id="quiz-intro-card">
+                        <div class="card-header text-center">
+                            <h3><i class="fa-solid fa-clipboard-question text-secondary"></i> LOGO 與色彩觀念測驗</h3>
+                            <p>本測驗共有 10 題單選題，考驗你對 LOGO 設計、色彩對比以及壓克力混色的觀念理解程度！</p>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="quiz-perks">
+                                <div class="perk-item">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span>無時間限制</span>
+                                </div>
+                                <div class="perk-item">
+                                    <i class="fa-solid fa-award"></i>
+                                    <span>顯示即時分數</span>
+                                </div>
+                                <div class="perk-item">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>附帶詳細解析</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary btn-lg" onclick="startQuiz()">開始答題</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Active Question Card -->
+                    <div class="card hidden" id="quiz-question-card">
+                        <div class="quiz-progress-bar-container">
+                            <div class="quiz-progress-bar" id="quiz-progress"></div>
+                        </div>
+                        <div class="card-header">
+                            <div class="question-number" id="question-num">問題 1 / 10</div>
+                            <h4 id="question-text">題目載入中...</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="quiz-options" id="quiz-options-container">
+                                <!-- Options dynamically rendered -->
+                            </div>
+                            <div class="quiz-feedback hidden" id="quiz-feedback-box">
+                                <div class="feedback-status" id="feedback-status">
+                                    <i class="fa-solid"></i> <span>正確！</span>
+                                </div>
+                                <p class="feedback-explanation" id="feedback-explanation">解析內容...</p>
+                                <button class="btn btn-primary" id="btn-next-question" onclick="nextQuestion()">下一題</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Results Card -->
+                    <div class="card hidden" id="quiz-results-card">
+                        <div class="card-body text-center">
+                            <div class="score-circle">
+                                <span class="score-num" id="quiz-score">80</span>
+                                <span class="score-label">分</span>
+                            </div>
+                            <h3 id="score-comment">做得好！</h3>
+                            <p class="score-desc" id="score-desc-text">你已經掌握了大部分的設計與色彩概念，準備好進行實作了嗎？</p>
+                            <div class="result-actions">
+                                <button class="btn btn-secondary" onclick="resetQuiz()">重新挑戰</button>
+                                <button class="btn btn-primary" onclick="switchSection('game')">挑戰調色大遊戲</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Game -->
+            <section id="sec-game" class="content-section">
+                <div class="game-layout">
+                    <!-- Left: Control panel -->
+                    <div class="card game-control-card">
+                        <div class="card-header">
+                            <h4><i class="fa-solid fa-sliders text-accent"></i> 壓克力顏料調配面板</h4>
+                            <p>請拖曳滑桿，調整青色、洋紅、黃色與白色的顏料份量比例。</p>
+                        </div>
+                        <div class="card-body">
+                            <!-- Sliders -->
+                            <div class="slider-group color-cyan">
+                                <div class="slider-label">
+                                    <span><i class="fa-solid fa-tint"></i> 青色顏料 (Cyan)</span>
+                                    <span id="val-c">0%</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="0" class="pigment-slider" id="slider-c" oninput="updateMix()">
+                            </div>
+
+                            <div class="slider-group color-magenta">
+                                <div class="slider-label">
+                                    <span><i class="fa-solid fa-tint"></i> 洋紅顏料 (Magenta)</span>
+                                    <span id="val-m">0%</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="0" class="pigment-slider" id="slider-m" oninput="updateMix()">
+                            </div>
+
+                            <div class="slider-group color-yellow">
+                                <div class="slider-label">
+                                    <span><i class="fa-solid fa-tint"></i> 黃色顏料 (Yellow)</span>
+                                    <span id="val-y">0%</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="0" class="pigment-slider" id="slider-y" oninput="updateMix()">
+                            </div>
+
+                            <div class="slider-group color-white">
+                                <div class="slider-label">
+                                    <span><i class="fa-solid fa-tint"></i> 白色顏料 (White)</span>
+                                    <span id="val-w">100%</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="100" class="pigment-slider" id="slider-w" oninput="updateMix()">
+                            </div>
+
+                            <div class="game-actions">
+                                <button class="btn btn-outline" onclick="resetGameMix()">重置調色</button>
+                                <button class="btn btn-accent" onclick="submitMix()">送出調色檢測</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Mixer & Level info -->
+                    <div class="game-visual-column">
+                        <!-- Level Card -->
+                        <div class="card level-card">
+                            <div class="level-header">
+                                <span class="level-title" id="game-level-name">第一關：洛神花茶紅 (Roselle Red)</span>
+                                <span class="level-counter" id="game-level-counter">關卡 1 / 10</span>
+                            </div>
+                            <p class="level-hint" id="game-level-hint">提示：洛神花茶帶有深邃濃郁的紅色，是由大量洋紅與少量黃色混色而成，且不需要太多水分與白色哦！</p>
+                        </div>
+
+                        <!-- Mixing comparison -->
+                        <div class="card mix-card">
+                            <div class="mix-display-container">
+                                <div class="color-box-wrapper">
+                                    <div class="color-title">目標顏色</div>
+                                    <div class="color-box" id="box-target" style="background-color: rgb(200, 10, 50);"></div>
+                                    <div class="color-code" id="code-target">RGB(200, 10, 50)</div>
+                                </div>
+                                
+                                <div class="mix-arrow">
+                                    <i class="fa-solid fa-circle-nodes"></i>
+                                </div>
+
+                                <div class="color-box-wrapper">
+                                    <div class="color-title">你調的顏色</div>
+                                    <div class="color-box" id="box-mixed" style="background-color: rgb(255, 255, 255);"></div>
+                                    <div class="color-code" id="code-mixed">RGB(255, 255, 255)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Score card -->
+                        <div class="card score-report-card hidden" id="game-result-box">
+                            <div class="card-body text-center">
+                                <div class="match-score-container">
+                                    <span class="match-score" id="game-score-num">85%</span>
+                                    <span class="match-score-label">色彩相似度</span>
+                                </div>
+                                <h5 id="game-feedback-title">差一點點就成功了！</h5>
+                                <p id="game-feedback-text">已經非常接近囉，調整一下白色或黃色的比例再試一次吧！</p>
+                                <button class="btn btn-primary" id="btn-next-level" onclick="nextLevel()" style="display:none;">下一關</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Logo Match Game -->
+            <section id="sec-match" class="content-section">
+                <div class="match-container">
+                    <!-- Game Info Header -->
+                    <div class="card level-card" style="margin-bottom: 1.25rem; flex-shrink: 0;">
+                        <div class="level-header">
+                            <span class="level-title">LOGO 配對大挑戰 (Logo Matching)</span>
+                            <span class="level-counter" id="match-round-counter">回合 1 / 4</span>
+                        </div>
+                        <p class="level-hint">請拖曳底部的「公司標籤」至上方 LOGO 卡片中的虛線框配對。也支援<b>點選配對</b>：先點標籤，再點 LOGO 框即可！</p>
+                    </div>
+
+                    <!-- Matching Area (5 slots) -->
+                    <div class="match-slots-grid" id="match-slots-container">
+                        <!-- slots dynamically rendered -->
+                    </div>
+
+                    <!-- Drag Sources (5 tags) -->
+                    <div class="match-tags-container" id="match-tags-box">
+                        <!-- tags dynamically rendered -->
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="match-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-shrink: 0;">
+                        <button class="btn btn-outline" onclick="resetMatchRound()">重置本輪</button>
+                        <button class="btn btn-accent" id="btn-submit-match" onclick="submitMatchRound()">送出配對檢測</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script imports -->
+    <script src="app.js"></script>
+</body>
+</html>
