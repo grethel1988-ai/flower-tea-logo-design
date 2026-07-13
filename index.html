@@ -464,37 +464,30 @@
                             <p>挑選背景色、加入花草貼圖與文字，打造專屬的花茶 LOGO！</p>
                         </div>
                         <div class="card-body">
-                            <!-- Background color selectors -->
-                            <div class="control-group">
-                                <label class="control-label">1. 選擇背景茶湯色</label>
-                                <div class="bg-preset-grid">
-                                    <button class="bg-preset-btn active" style="background-color: #f7f1e3;" data-color="#f7f1e3"></button>
-                                    <button class="bg-preset-btn" style="background-color: #ffb3c1;" data-color="#ffb3c1"></button>
-                                    <button class="bg-preset-btn" style="background-color: #ffd166;" data-color="#ffd166"></button>
-                                    <button class="bg-preset-btn" style="background-color: #a8dadc;" data-color="#a8dadc"></button>
-                                    <button class="bg-preset-btn" style="background-color: #e2f0d9;" data-color="#e2f0d9"></button>
-                                    <button class="bg-preset-btn" style="background-color: #ffffff;" data-color="#ffffff"></button>
-                                </div>
-                            </div>
-
                             <!-- Stickers Selector -->
                             <div class="control-group">
-                                <label class="control-label">2. 加入設計貼圖 (點擊加入畫布)</label>
+                                <label class="control-label">1. 加入設計貼圖 (點擊加入畫布)</label>
                                 <div class="sticker-select-grid">
-                                    <button class="sticker-btn" data-sticker="leaf1"><i class="fa-solid fa-leaf" style="color: #2d6a4f;"></i> 綠葉 A</button>
-                                    <button class="sticker-btn" data-sticker="leaf2"><i class="fa-solid fa-seedling" style="color: #40916c;"></i> 嫩芽 B</button>
-                                    <button class="sticker-btn" data-sticker="flower1"><i class="fa-solid fa-sun" style="color: #ffb703;"></i> 洋甘菊</button>
-                                    <button class="sticker-btn" data-sticker="flower2"><i class="fa-solid fa-asterisk" style="color: #ff4d6d;"></i> 桃花瓣</button>
-                                    <button class="sticker-btn" data-sticker="rose"><i class="fa-solid fa-face-smile" style="color: #c9184a;">🌹</i> 玫瑰花</button>
-                                    <button class="sticker-btn" data-sticker="cup"><i class="fa-solid fa-mug-hot" style="color: #8c6239;"></i> 熱茶杯</button>
-                                    <button class="sticker-btn" data-sticker="tea"><i class="fa-solid fa-glass-water" style="color: #a8dadc;"></i> 玻璃杯</button>
-                                    <button class="sticker-btn" data-sticker="lemon"><i class="fa-solid fa-lemon" style="color: #ffd166;"></i> 檸檬片</button>
+                                    <button class="sticker-btn" data-sticker="leaf"><i class="fa-solid fa-leaf" style="color: #2d6a4f;"></i> 綠葉</button>
+                                    <button class="sticker-btn" data-sticker="seedling"><i class="fa-solid fa-seedling" style="color: #40916c;"></i> 嫩芽</button>
+                                    <button class="sticker-btn" data-sticker="tree"><i class="fa-solid fa-tree" style="color: #386641;"></i> 小樹</button>
+                                    <button class="sticker-btn" data-sticker="clover"><i class="fa-solid fa-clover" style="color: #6a994e;"></i> 幸運草</button>
+                                    
+                                    <button class="sticker-btn" data-sticker="star"><i class="fa-solid fa-star" style="color: #ffd166;"></i> 星星</button>
+                                    <button class="sticker-btn" data-sticker="moon"><i class="fa-solid fa-moon" style="color: #f7d070;"></i> 月亮</button>
+                                    <button class="sticker-btn" data-sticker="sun"><i class="fa-solid fa-sun" style="color: #f26522;"></i> 太陽</button>
+                                    <button class="sticker-btn" data-sticker="cloud"><i class="fa-solid fa-cloud" style="color: #a8dadc;"></i> 雲朵</button>
+                                    
+                                    <button class="sticker-btn" data-sticker="circle"><i class="fa-solid fa-circle" style="color: #333333;"></i> 圓形</button>
+                                    <button class="sticker-btn" data-sticker="square"><i class="fa-solid fa-square" style="color: #333333;"></i> 正方形</button>
+                                    <button class="sticker-btn" data-sticker="triangle"><i class="fa-solid fa-caret-up" style="color: #333333;"></i> 三角形</button>
+                                    <button class="sticker-btn" data-sticker="heart"><i class="fa-solid fa-heart" style="color: #ef476f;"></i> 愛心</button>
                                 </div>
                             </div>
 
                             <!-- Text Input and options -->
                             <div class="control-group">
-                                <label class="control-label">3. 加入品牌文字</label>
+                                <label class="control-label">2. 加入品牌文字</label>
                                 <div class="text-input-row" style="display: flex; gap: 0.5rem;">
                                     <input type="text" id="designer-text-input" placeholder="輸入茶品牌名稱..." class="input-text" style="flex: 1; padding: 0.5rem; border-radius: var(--border-radius-sm); border: 1px solid var(--border-color); background: rgba(255,255,255,0.05); color: var(--text-color);">
                                     <button class="btn btn-primary" onclick="addTextSticker()" style="padding: 0.5rem 1rem;"><i class="fa-solid fa-plus"></i> 新增</button>
@@ -511,7 +504,7 @@
 
                             <!-- Tool modes: Hand Draw vs Select -->
                             <div class="control-group">
-                                <label class="control-label">4. 編輯/手繪模式</label>
+                                <label class="control-label">3. 編輯/手繪模式</label>
                                 <div class="mode-toggle-row" style="display: flex; gap: 0.5rem;">
                                     <button class="btn btn-outline active" id="btn-mode-select" onclick="setDesignerMode('select')" style="flex: 1;">
                                         <i class="fa-solid fa-arrow-pointer"></i> 編輯貼圖
@@ -542,8 +535,8 @@
                                 <div class="canvas-title" style="font-size: 1.25rem; font-weight: bold; color: var(--text-color);">LOGO 實體畫布</div>
                                 <div class="canvas-subtitle" id="canvas-status" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">點擊貼圖加入，並可在畫面上拖曳移動</div>
                             </div>
-                            <div class="canvas-container-wrapper" style="position: relative; border-radius: var(--border-radius-md); overflow: visible; box-shadow: var(--shadow-lg); border: 2px solid rgba(255,255,255,0.08); background: #f7f1e3;">
-                                <canvas id="logoCanvas" width="400" height="400" style="display: block; cursor: default; width: 100%; max-width: 400px; aspect-ratio: 1;"></canvas>
+                            <div class="canvas-container-wrapper" style="position: relative; border-radius: var(--border-radius-md); overflow: visible; box-shadow: var(--shadow-lg); border: 2px solid rgba(255,255,255,0.08); background: #ffffff;">
+                                <canvas id="logoCanvas" width="500" height="500" style="display: block; cursor: default; width: 100%; max-width: 500px; aspect-ratio: 1;"></canvas>
                                 
                                 <!-- Sticker Helper Toolbar for selected sticker -->
                                 <div class="canvas-toolbar hidden" id="canvas-sticker-toolbar" style="position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); display: flex; gap: 0.25rem; background: rgba(30, 30, 46, 0.95); padding: 0.35rem 0.65rem; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow-lg); z-index: 100;">

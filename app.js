@@ -1053,7 +1053,7 @@ function triggerConfetti() {
 // ==========================================
 let canvas, ctx, drawingCanvas, drawingCtx;
 let designerMode = 'select'; // 'select' or 'draw'
-let canvasBgColor = '#f7f1e3';
+let canvasBgColor = '#ffffff';
 let stickers = [];
 let selectedStickerId = null;
 let isDrawing = false;
@@ -1062,14 +1062,18 @@ let dragOffset = { x: 0, y: 0 };
 let stickerIdCounter = 0;
 
 const stickerGlyphs = {
-    leaf1: { value: '\uf06c', type: 'sticker', color: '#2d6a4f', size: 60 },
-    leaf2: { value: '\uf4d8', type: 'sticker', color: '#40916c', size: 60 },
-    flower1: { value: '\uf185', type: 'sticker', color: '#ffb703', size: 60 },
-    flower2: { value: '\uf069', type: 'sticker', color: '#ff4d6d', size: 45 },
-    rose: { value: '🌹', type: 'emoji', size: 70 },
-    cup: { value: '\uf2c4', type: 'sticker', color: '#8c6239', size: 80 },
-    tea: { value: '\e4f4', type: 'sticker', color: '#a8dadc', size: 80 },
-    lemon: { value: '\uf567', type: 'sticker', color: '#ffd166', size: 60 }
+    leaf: { value: '\uf06c', type: 'sticker', color: '#2d6a4f', size: 75 },
+    seedling: { value: '\uf4d8', type: 'sticker', color: '#40916c', size: 75 },
+    tree: { value: '\uf1bb', type: 'sticker', color: '#386641', size: 75 },
+    clover: { value: '\uf0c4', type: 'sticker', color: '#6a994e', size: 75 },
+    star: { value: '\uf005', type: 'sticker', color: '#ffd166', size: 75 },
+    moon: { value: '\uf186', type: 'sticker', color: '#f7d070', size: 75 },
+    sun: { value: '\uf185', type: 'sticker', color: '#f26522', size: 80 },
+    cloud: { value: '\uf0c2', type: 'sticker', color: '#a8dadc', size: 80 },
+    circle: { value: '\uf111', type: 'sticker', color: '#333333', size: 75 },
+    square: { value: '\uf0c8', type: 'sticker', color: '#333333', size: 75 },
+    triangle: { value: '\uf0d8', type: 'sticker', color: '#333333', size: 75 },
+    heart: { value: '\uf004', type: 'sticker', color: '#ef476f', size: 75 }
 };
 
 function initDesigner() {
@@ -1100,17 +1104,7 @@ function initDesigner() {
     canvas.addEventListener('touchmove', handleCanvasMove, { passive: false });
     canvas.addEventListener('touchend', handleCanvasEnd, { passive: false });
     
-    // Preset Background Handlers
-    document.querySelectorAll('.bg-preset-btn').forEach(btn => {
-        btn.onclick = () => {
-            document.querySelectorAll('.bg-preset-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            canvasBgColor = btn.getAttribute('data-color');
-            const wrapper = document.querySelector('.canvas-container-wrapper');
-            if (wrapper) wrapper.style.backgroundColor = canvasBgColor;
-            drawCanvas();
-        };
-    });
+    // Preset Background Handlers (Removed background color selector)
     
     // Preset Stickers Selection Handlers
     document.querySelectorAll('.sticker-btn').forEach(btn => {
